@@ -111,8 +111,11 @@ const Compare = ({
             </div>
             <div className="font-medium mb-4 ">{data?.summary}</div>
             <div className="flex flex-col gap-4">
-              {data?.comparisons?.map((e) => (
-                <div className="font-medium">
+              {data?.comparisons?.map((e: any, index: number) => (
+                <div
+                  className="font-medium"
+                  key={index + e}
+                >
                   <div className="text-slate-400 text-lg font-bold">
                     {e?.heading}
                   </div>

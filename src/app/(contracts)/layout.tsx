@@ -12,7 +12,12 @@ export default function ContractsLayout({
   const router = useRouter();
   useEffect(() => {
     const expirationTime = localStorage.getItem("expirationTime");
-    if (expirationTime && Date.now() > parseInt(expirationTime, 10)) {
+    if (expirationTime) {
+      if (expirationTime && Date.now() > parseInt(expirationTime, 10)) {
+        localStorage.clear();
+        router.push("/");
+      }
+    } else {
       localStorage.clear();
       router.push("/");
     }

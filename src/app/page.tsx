@@ -37,8 +37,6 @@ export default function Home() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <TextField
-              label="Username"
-              variant="outlined"
               fullWidth
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -47,8 +45,6 @@ export default function Home() {
           <div className="mb-6">
             <TextField
               type="password"
-              label="Password"
-              variant="outlined"
               fullWidth
               value={password}
               onChange={(e) => setPassword(e.target.value)}
