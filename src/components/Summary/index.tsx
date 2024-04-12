@@ -115,10 +115,20 @@ const Summary = ({
                     Policy {index + 1} of {currentPolicies?.length}
                   </div>
                   <div className="pl-5">{e?.policy}</div>
+                  <div className="text-slate-400 font-semibold">Result</div>
+                  <div
+                    className={`pl-5 capitalize ${
+                      e?.result === "entailed"
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {e?.result}
+                  </div>
                   {e?.warnings?.map((warning: any, i: number) => (
                     <div key={i + warning}>
                       <div className="text-slate-400 font-semibold">
-                        Policy {index + 1} : Waring {i + 1} of{" "}
+                        Policy {index + 1} : Warning {i + 1} of{" "}
                         {e?.warnings?.length}
                       </div>
                       <div className="pl-5">
