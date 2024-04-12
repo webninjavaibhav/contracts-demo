@@ -48,13 +48,10 @@ export async function POST(req: NextRequest) {
       const file: File | null = data.get(key) as File;
       fileData.set(key, file);
     }
-
+    console.log("fileData", fileData);
     const realResponse = await fetch(`${realBaseUrl}/contractAnalysis`, {
       method: "POST",
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-      body: fileData,
+      body: data,
     });
     const parsedRealResponse = await realResponse.json();
     if (parsedRealResponse?.results) {
@@ -62,12 +59,10 @@ export async function POST(req: NextRequest) {
     } else {
       const mockResponse = await fetch(`${mockBaseUrl}/contractAnalysis`, {
         method: "POST",
-        headers: {
-          "content-type": "multipart/form-data",
-        },
         body: fileData,
       });
       const parsedMockData = await mockResponse.json();
+      console.log("parsedMockData" + parsedMockData);
       resultantData.push(parsedMockData);
     }
   } catch (err) {

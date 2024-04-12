@@ -30,7 +30,7 @@ const ContractAnalysis = () => {
         <TextField
           fullWidth
           value={policy}
-          placeholder="Policy"
+          placeholder="Policies"
           onChange={(e) => setPolicy(e.target.value)}
         />
         <Button
