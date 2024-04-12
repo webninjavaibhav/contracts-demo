@@ -32,7 +32,6 @@ export async function POST(req: NextRequest) {
       success: true,
     });
   } catch (err) {
-    console.log(err);
     return NextResponse.json({
       data: "Error generating the comparision",
       success: false,

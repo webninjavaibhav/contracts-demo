@@ -88,8 +88,6 @@ const Compare = ({
   data: { summary?: number; comparisons: any[] };
   compareFor: string;
 }) => {
-  console.log("compared data", data);
-
   return (
     <div className="flex flex-col gap-4 p-10">
       <Typography
