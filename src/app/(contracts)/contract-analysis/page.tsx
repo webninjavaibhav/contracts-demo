@@ -2,7 +2,7 @@
 
 import { useContractAnalysis } from "./useContractAnalysis";
 import { Button } from "@/components/common/Button";
-import { Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import Summary from "@/components/Summary";
 import UploadedFiles from "@/components/UploadFiles";
 
@@ -12,6 +12,8 @@ const ContractAnalysis = () => {
     analyzedFiles,
     value,
     loading,
+    policy,
+    setPolicy,
     analyzeHandler,
     onUploadFiles,
     handleChange,
@@ -24,7 +26,13 @@ const ContractAnalysis = () => {
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
       />
-      <div className="flex justify-end mt-10">
+      <div className="flex gap-10 pl-10 mt-10">
+        <TextField
+          fullWidth
+          value={policy}
+          placeholder="Policy"
+          onChange={(e) => setPolicy(e.target.value)}
+        />
         <Button
           component="label"
           variant="contained"

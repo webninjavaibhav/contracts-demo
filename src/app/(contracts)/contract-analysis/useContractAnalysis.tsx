@@ -7,7 +7,7 @@ export const useContractAnalysis = () => {
     results: any[];
   }>({ totalRecords: 0, results: [] });
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [policy, setPolicy] = useState<string>("");
   const [value, setValue] = useState(0);
 
   const onUploadFiles = (file: File[], uploadedFiles: File[]) => {
@@ -29,12 +29,14 @@ export const useContractAnalysis = () => {
     uploadedFiles.forEach((file, index) => {
       data.set(`file${index + 1}`, file);
     });
+    policy && data.set("policies", policy);
     const response = await fetch(`api/contract-analysis`, {
       method: "POST",
       body: data,
     });
     const result = await response.json();
     setAnalyzedFiles(result?.data?.[0]);
+    setPolicy("");
     setLoading(false);
   };
 
@@ -43,6 +45,8 @@ export const useContractAnalysis = () => {
     analyzedFiles,
     value,
     loading,
+    policy,
+    setPolicy,
     analyzeHandler,
     onUploadFiles,
     handleChange,

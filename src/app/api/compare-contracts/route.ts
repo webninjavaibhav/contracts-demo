@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
         body: fileData,
       });
       resultantData = await mockResponse.json();
-    }
+    }``
     return NextResponse.json({
       data: resultantData,
       success: true,
