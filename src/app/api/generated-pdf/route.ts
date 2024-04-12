@@ -9,7 +9,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await page.setContent(data);
     await page.emulateMediaType("screen");
     const pdfBytes = await page.pdf();
-    await browser.close();
+    console.log("pdfBytes", pdfBytes);
     return new NextResponse(pdfBytes);
   } catch (err: any) {
     return NextResponse.json({
