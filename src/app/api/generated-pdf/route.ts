@@ -10,12 +10,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await page.emulateMediaType("screen");
     const pdfBytes = await page.pdf();
     await browser.close();
-    return new NextResponse(pdfBytes, {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="generated.pdf"',
-      },
-    });
+    return new NextResponse(pdfBytes);
   } catch (err: any) {
     return NextResponse.json({
       data: { message: err.message },
