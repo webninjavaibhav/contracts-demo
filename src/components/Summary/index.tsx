@@ -4,7 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "../common/Button";
 
 async function generatePDF(currentPolicies: any, currentDocumentName: string) {
-  const htmlContent = `<div style="line-height:1.5; font-size:16px;" id="pdf-container">
+  const htmlContent = `<style>html { -webkit-print-color-adjust: exact;}</style><div style="line-height:1.5; font-size:16px;">
   <div style="font-size: 2rem;">Summarized Result</div>
       ${currentPolicies
         ?.map((e: any, index: number) => {

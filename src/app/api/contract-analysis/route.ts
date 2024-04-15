@@ -48,7 +48,6 @@ export async function POST(req: NextRequest) {
       const file: File | null = data.get(key) as File;
       fileData.set(key, file);
     }
-    console.log("fileData", fileData);
     // const realResponse = await fetch(`${realBaseUrl}/contractAnalysis`, {
     //   method: "POST",
     //   body: data,
@@ -62,7 +61,6 @@ export async function POST(req: NextRequest) {
       body: fileData,
     });
     const parsedMockData = await mockResponse.json();
-    console.log("parsedMockData" + parsedMockData);
     resultantData.push(parsedMockData);
     // }
   } catch (err) {
