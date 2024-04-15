@@ -49,22 +49,22 @@ export async function POST(req: NextRequest) {
       fileData.set(key, file);
     }
     console.log("fileData", fileData);
-    const realResponse = await fetch(`${realBaseUrl}/contractAnalysis`, {
+    // const realResponse = await fetch(`${realBaseUrl}/contractAnalysis`, {
+    //   method: "POST",
+    //   body: data,
+    // });
+    // const parsedRealResponse = await realResponse.json();
+    // if (parsedRealResponse?.results) {
+    //   resultantData.push(parsedRealResponse);
+    // } else {
+    const mockResponse = await fetch(`${mockBaseUrl}/contractAnalysis`, {
       method: "POST",
-      body: data,
+      body: fileData,
     });
-    const parsedRealResponse = await realResponse.json();
-    if (parsedRealResponse?.results) {
-      resultantData.push(parsedRealResponse);
-    } else {
-      const mockResponse = await fetch(`${mockBaseUrl}/contractAnalysis`, {
-        method: "POST",
-        body: fileData,
-      });
-      const parsedMockData = await mockResponse.json();
-      console.log("parsedMockData" + parsedMockData);
-      resultantData.push(parsedMockData);
-    }
+    const parsedMockData = await mockResponse.json();
+    console.log("parsedMockData" + parsedMockData);
+    resultantData.push(parsedMockData);
+    // }
   } catch (err) {
     console.log(err);
   }
