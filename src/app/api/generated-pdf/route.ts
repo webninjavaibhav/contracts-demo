@@ -4,11 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const data = await req.json();
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.setContent(data);
-    await page.emulateMediaType("screen");
-    const pdfBytes = await page.pdf();
+    const pdfBytes = await page.pdf({ format: "A4" });
+    await browser.close();
     return new NextResponse(pdfBytes);
   } catch (err: any) {
     return NextResponse.json({
