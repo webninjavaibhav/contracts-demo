@@ -29,7 +29,7 @@ const DropZone = (props: any) => {
           <Button
             component="label"
             variant="contained"
-            className="bg-[#68BA82] hover:bg-[#68BA82]"
+            className="bg-[#00D3AF] hover:bg-[#00D3AF]"
           >
             Upload
           </Button>

@@ -154,7 +154,7 @@ const Compare = ({
         <Button
           component="label"
           variant="contained"
-          className="bg-[#68BA82] hover:bg-[#68BA82] w-[25%]"
+          className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
           onClick={() => generatePDF(data, compareFor)}
           disabled={loading}
         >

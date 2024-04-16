@@ -27,7 +27,7 @@ async function generatePDF(currentPolicies: any, currentDocumentName: string) {
            </div>
          </div>
          <div
-           style="color : ${e?.result === "entailed" ? "green" : "red"}"
+           style="color : ${e?.result === "entailed" ? "#00D3AF" : "red"}"
          >
            <div style="font-weight: bold;">Result : <span style="text-transform: capitalize;">
            ${e?.result}
@@ -147,145 +147,83 @@ const Summary = ({
                   key={index + e}
                   className="mb-5"
                 >
-                  <div className="flex flex-col gap-3">
-                    <div className="flex flex-col text-sm px-2 py-5 bg-[#ebecfe] gap-3 border-l-4 border-l-[#44a0f4]">
-                      <div className="text-xl">
-                        Policy Analysis
-                        {(e?.policy || e?.result) && (
-                          <span className="items-center ml-2">
-                            {
-                              <Icons.flagIcon
-                                sx={{
-                                  color: "red",
-                                  fontSize: 25,
-                                  marginBottom: 0.8,
-                                }}
-                              />
-                            }
-                          </span>
-                        )}
+                  <div className="flex flex-col gap-3 bg-[#eef] p-5 rounded-[8px] mb-[20px]">
+                    <div className="flex justify-between gap-2">
+                      <div className="font-semibold p-2.5">
+                        Compliance {index + 1} / {currentPolicies?.length} :
+                        <span className="ml-1 font-light">{e?.policy}</span>
                       </div>
-                      <div className="flex flex-col gap-2">
-                        <div className="font-semibold">
-                          Policy {index + 1} of {currentPolicies?.length} :{" "}
-                          <span className="ml-1 font-light">{e?.policy}</span>
-                        </div>
-                        <div
-                          className={`${
-                            e?.result === "entailed"
-                              ? "text-green-500"
-                              : "text-red-500"
-                          }`}
-                        >
-                          <div className="font-semibold">
-                            Result :
-                            <span className={`ml-1 capitalize`}>
-                              {e?.result}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                      <span className="items-center ml-2">
+                        <Icons.flagIcon
+                          sx={{
+                            color:
+                              e?.result === "contradicted" ? "red" : "white",
+                            fontSize: 25,
+                            marginBottom: 0.8,
+                          }}
+                        />
+                      </span>
+                    </div>
+
+                    <div
+                      className={`font-semibold p-2.5 ${
+                        e?.result === "entailed"
+                          ? "bg-[#e8f5e9]"
+                          : "bg-[#f2dede]"
+                      }`}
+                    >
+                      Result :
+                      <span className="ml-1 font-light">{e?.result}</span>
                     </div>
                     {e?.warnings?.map((warning: any, i: number) => (
                       <div
                         key={i + warning}
-                        className="flex flex-col gap-4"
+                        className="flex flex-col gap-2"
                       >
-                        <div className="flex flex-col text-sm px-2 py-5 bg-[#ebecfe] gap-3 border-l-4 border-l-[#44a0f4]">
-                          <div className="text-xl">
-                            Clause Detail
-                            {(warning?.clause ||
-                              warning?.differences ||
-                              warning?.risks) && (
-                              <span className="items-center ml-2">
-                                {
-                                  <Icons.flagIcon
-                                    sx={{
-                                      color: "red",
-                                      fontSize: 25,
-                                      marginBottom: 0.8,
-                                    }}
-                                  />
-                                }
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex flex-col gap-2">
-                            <div className="font-semibold">
-                              Policy {index + 1} : Warning {i + 1} of{" "}
-                              {e?.warnings?.length}
-                            </div>
-                            <div className="font-semibold">
-                              Original Clause :
-                              <span className="ml-1 font-light">
-                                {warning?.clause}
-                              </span>
-                            </div>
-                            <div className="border-l-4 border-l-[#fb8a02] bg-[#e8f5e9] pl-2">
-                              <div className="font-semibold">
-                                Differences :
-                                <span className="ml-1 font-light">
-                                  {warning?.differences}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="text-red-500 font-semibold">
-                              <div>
-                                Risks :
-                                <span className="ml-1">{warning?.risks}</span>
-                              </div>
-                            </div>
+                        <div className="font-semibold bg-[#d9edf7] p-2.5">
+                          Clause :
+                          <span className="ml-1 font-light">
+                            {warning?.clause}
+                          </span>
+                        </div>
+                        <div className="font-semibold bg-[#fcf8e3] p-2.5">
+                          Differences :
+                          <span className="ml-1 font-light">
+                            {warning?.differences}
+                          </span>
+                        </div>
+                        <div className="font-semibold bg-[#f2dede] p-2.5">
+                          <div>
+                            Risks :
+                            <span className="ml-1 font-light">
+                              {warning?.risks}
+                            </span>
                           </div>
                         </div>
-                        <div className="flex flex-col text-sm px-2 py-5 bg-[#ebecfe] gap-3 border-l-4 border-l-[#44a0f4]">
-                          <div className="text-xl">
-                            Redline Comparison
-                            {warning?.redLine && (
-                              <span className="items-center ml-2">
-                                {
-                                  <Icons.flagIcon
-                                    sx={{
-                                      color: "red",
-                                      fontSize: 25,
-                                      marginBottom: 0.8,
-                                    }}
-                                  />
-                                }
-                              </span>
-                            )}
-                          </div>
-                          <div className="font-semibold">
-                            Redline Text :
-                            {warning?.redLine ? (
-                              <span
-                                className="ml-1 font-light"
-                                dangerouslySetInnerHTML={{
-                                  __html: warning?.redLine,
-                                }}
-                              ></span>
-                            ) : (
-                              <span className="ml-3">N/A</span>
-                            )}
+                        <div className="font-semibold bg-[#fcf8e3] p-2.5">
+                          <div>
+                            Redline :
+                            <span className="ml-1 font-light">
+                              {warning?.redLine ? (
+                                <span
+                                  className="ml-1 font-light"
+                                  dangerouslySetInnerHTML={{
+                                    __html: warning?.redLine,
+                                  }}
+                                ></span>
+                              ) : (
+                                <span className="ml-3">N/A</span>
+                              )}
+                            </span>
                           </div>
                         </div>
-                        <div className="flex flex-col text-sm px-2 py-5 bg-[#e8f5e9] gap-3 border-l-4 border-l-[#47ae4b]">
-                          <div className="text-xl">
-                            Revised Clauses
-                            {warning?.revisedClause && (
-                              <span className="items-center ml-2">
-                                {
-                                  <Icons.flagIcon
-                                    sx={{
-                                      color: "red",
-                                      fontSize: 25,
-                                      marginBottom: 0.8,
-                                    }}
-                                  />
-                                }
-                              </span>
-                            )}
+                        <div className="font-semibold bg-[#e8f5e9] p-2.5">
+                          <div>
+                            Revised Clause :
+                            <span className="ml-1 font-light">
+                              {warning?.revisedClause}
+                            </span>
                           </div>
-                          <div>{warning?.revisedClause ?? "N/A"}</div>
                         </div>
                       </div>
                     ))}
@@ -307,7 +245,7 @@ const Summary = ({
         <Button
           component="label"
           variant="contained"
-          className="bg-[#68BA82] hover:bg-[#68BA82] w-[25%]"
+          className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
           onClick={() => generatePDF(currentPolicies, currentDocumentName)}
           disabled={loading}
         >

@@ -69,7 +69,7 @@ const Navigation = () => {
                     <div
                       className={`flex items-center justify-center w-[40px] h-[40px] ${
                         activeSection === nav?.route
-                          ? "bg-[#68BA82] rounded-lg"
+                          ? "bg-[#00D3AF] rounded-lg"
                           : "bg-transparent"
                       }`}
                     >
@@ -97,7 +97,7 @@ const Navigation = () => {
             fontSize: 40,
             cursor: "pointer",
             color: "white",
-            backgroundColor: "green",
+            backgroundColor: "#00D3AF",
             borderRadius: 50,
             padding: 1,
             transform: fullNavigation ? "scaleX(-1)" : "",

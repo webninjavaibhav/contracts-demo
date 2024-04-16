@@ -52,7 +52,7 @@ const UploadedFiles = ({
         <Button
           component="label"
           variant="contained"
-          className="bg-[#68BA82] max-h-[40px] hover:bg-[#68BA82]"
+          className="bg-[#00D3AF] max-h-[40px] hover:bg-[#00D3AF]"
           onClick={onClick}
           disabled={loading}
         >
