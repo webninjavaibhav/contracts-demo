@@ -89,16 +89,11 @@ const Compare = ({
   compareFor: string;
 }) => {
   return (
-    <div className="flex flex-col gap-4 p-10">
-      <Typography
-        variant="h5"
-        className="flex font-semibold"
-      >
-        Compared Result
-      </Typography>
+    <div className="flex flex-col gap-4 p-5">
+      <div className="flex font-semibold text-2xl">Compared Result</div>
       {loading && (
         <div className="flex items-center justify-center">
-          <CircularProgress />
+          <CircularProgress color="success" />
         </div>
       )}
       <div id="compare-result-container">
@@ -150,14 +145,16 @@ const Compare = ({
             </div>
           </div>
         ) : !loading ? (
-          <div>Please add some files to summarize data</div>
+          <div className="font-light">
+            Please add some files to compare data
+          </div>
         ) : null}
       </div>
       {data?.comparisons?.length && !loading ? (
         <Button
           component="label"
           variant="contained"
-          className="bg-neutral-700 w-[25%]"
+          className="bg-[#68BA82] hover:bg-[#68BA82] w-[25%]"
           onClick={() => generatePDF(data, compareFor)}
           disabled={loading}
         >

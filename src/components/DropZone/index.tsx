@@ -19,7 +19,7 @@ const DropZone = (props: any) => {
     <>
       <div
         {...getRootProps()}
-        className="grid place-content-center justify-center border-2 min-h-[200px] "
+        className="grid place-content-center justify-center border-2 h-[125px]"
       >
         <Box
           className={{
@@ -29,7 +29,7 @@ const DropZone = (props: any) => {
           <Button
             component="label"
             variant="contained"
-            className="bg-neutral-700"
+            className="bg-[#68BA82] hover:bg-[#68BA82]"
           >
             Upload
           </Button>

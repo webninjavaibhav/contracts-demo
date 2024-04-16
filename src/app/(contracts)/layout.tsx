@@ -24,9 +24,11 @@ export default function ContractsLayout({
   }, []);
 
   return (
-    <div className="flex w-full">
+    <div className="grid grid-cols-[auto_1fr] w-full">
       <Navigation />
-      <div className="flex flex-col w-full p-5 pl-[250px]">{children}</div>
+      <div className="flex flex-col w-full px-16 py-5 bg-[#DCE0E7] max-h-[100vh] overflow-auto">
+        {children}
+      </div>
     </div>
   );
 }

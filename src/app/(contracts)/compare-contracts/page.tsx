@@ -17,33 +17,22 @@ const ContractComparison = () => {
   } = useCompareContracts();
 
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <UploadedFiles
         title="Contract Comparison"
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
+        onClick={comparisonHandler}
+        loading={loading}
       />
-      <div className="flex justify-end mt-10">
-        <Button
-          component="label"
-          variant="contained"
-          className="bg-neutral-700"
-          onClick={comparisonHandler}
-          disabled={loading}
-        >
-          <Typography variant="h6">
-            {loading ? "Fetching results..." : "Compare Contracts"}
-          </Typography>
-        </Button>
-      </div>
-      <div>
+      <div className="bg-[#fff] rounded-xl min-h-[600px]">
         <Compare
           loading={loading}
           data={comparedResult}
           compareFor={"contract"}
         />
       </div>
-    </>
+    </div>
   );
 };
 

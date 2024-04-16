@@ -12,8 +12,8 @@ const Tabs: React.FC<TabsComponentProps> = ({ tabs, value, onChange }) => {
     <TabsComponent
       value={value}
       onChange={onChange}
-      textColor="primary"
-      indicatorColor="primary"
+      textColor="secondary"
+      indicatorColor="secondary"
     >
       {tabs?.map((tab, index) => (
         <Tab

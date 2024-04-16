@@ -20,32 +20,17 @@ const ContractAnalysis = () => {
   } = useContractAnalysis();
 
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <UploadedFiles
-        title="Contract"
+        title="Contract Analysis"
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
+        policy={policy}
+        setPolicy={setPolicy}
+        onClick={analyzeHandler}
+        loading={loading}
       />
-      <div className="flex gap-10 pl-10 mt-10">
-        <TextField
-          fullWidth
-          value={policy}
-          placeholder="Policies"
-          onChange={(e) => setPolicy(e.target.value)}
-        />
-        <Button
-          component="label"
-          variant="contained"
-          className="bg-neutral-700"
-          onClick={analyzeHandler}
-          disabled={loading}
-        >
-          <Typography variant="h6">
-            {loading ? "Analyzing" : "Analyze"}
-          </Typography>
-        </Button>
-      </div>
-      <div>
+      <div className="bg-[#fff] rounded-xl min-h-[600px]">
         <Summary
           value={value}
           loading={loading}
@@ -53,7 +38,7 @@ const ContractAnalysis = () => {
           handleChange={handleChange}
         />
       </div>
-    </>
+    </div>
   );
 };
 
