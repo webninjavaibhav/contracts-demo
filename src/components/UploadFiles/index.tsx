@@ -59,7 +59,7 @@ const UploadedFiles = ({
                   {loading ? (
                     <CircularProgress
                       size={16}
-                      color="success"
+                      sx={{ color: "#00D3AF" }}
                     />
                   ) : (
                     "Submit"
@@ -75,12 +75,12 @@ const UploadedFiles = ({
                 variant="contained"
                 onClick={onClick}
                 disabled={loading}
-                className="bg-[#343A40] p-2 cursor-pointer flex items-center gap-1"
+                className="bg-[#00D3AF]  hover:bg-[#00D3AF] p-2 cursor-pointer flex items-center gap-1"
               >
                 {loading ? (
                   <CircularProgress
                     size={16}
-                    color="success"
+                    sx={{ color: "#00D3AF" }}
                   />
                 ) : (
                   "Submit"

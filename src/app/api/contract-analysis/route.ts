@@ -28,11 +28,14 @@ export async function POST(req: NextRequest) {
       const parsedMockData = await mockResponse.json();
       resultantData.push(parsedMockData);
     }
+    return NextResponse.json({
+      data: resultantData,
+      success: true,
+    });
   } catch (err) {
-    console.log(err);
+    return NextResponse.json({
+      data: "Error generating contract analysis",
+      success: true,
+    });
   }
-  return NextResponse.json({
-    data: resultantData,
-    success: true,
-  });
 }

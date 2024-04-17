@@ -93,7 +93,7 @@ const Compare = ({
       <div className="flex font-semibold text-2xl">Compared Result</div>
       {loading && (
         <div className="flex items-center justify-center">
-          <CircularProgress color="success" />
+          <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
       <div id="compare-result-container">

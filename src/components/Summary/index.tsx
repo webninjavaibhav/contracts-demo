@@ -132,7 +132,7 @@ const Summary = ({
       ) : null}
       {loading && (
         <div className="flex items-center justify-center">
-          <CircularProgress color="success" />
+          <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
       <div id="pdf-container">

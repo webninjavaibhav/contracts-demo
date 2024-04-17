@@ -59,6 +59,7 @@ export default function Home() {
             variant="contained"
             color="primary"
             fullWidth
+            className="bg-[#00D3AF]  hover:bg-[#00D3AF] p-2 cursor-pointer flex items-center gap-1"
           >
             Login
           </Button>
