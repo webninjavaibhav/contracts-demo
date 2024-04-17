@@ -1,87 +1,84 @@
 import Tabs from "../common/Tabs";
-import { Divider, Typography } from "@mui/material";
+import { Divider } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "../common/Button";
 import Icons from "../common/Icons";
 
 async function generatePDF(currentPolicies: any, currentDocumentName: string) {
-  const htmlContentData = `<style>html { -webkit-print-color-adjust: exact;}</style><div style="line-height:1.5; font-size:16px;">
+  const htmlContentData = `<style>html { -webkit-print-color-adjust: exact;}</style><div style="line-height:1.5; font-size:14.5px;">
   <div style="font-size: 2rem;">Summarized Result</div>
- ${currentPolicies
-   ?.map((e: any, index: number) => {
-     return `<div
-   key=${"policy-" + index}
-   style="margin-bottom: 1.25rem;"
- >
-   <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-     <div style="display: flex; flex-direction: column; font-size: 1rem; padding: 1rem 0.5rem; background-color: #ebecfe; gap: 0.5rem; border-left: 0.25rem solid #44a0f4;">
-       <div style="font-size: 1.25rem;">Policy Analysis</div>
-       <div style="display: flex; flex-direction: column; gap: 0.25rem;">
-         <div>
-           <div style="font-weight: bold;">
-             Policy ${index + 1} of ${
-       currentPolicies?.length
-     } : <span style="font-weight: 100;">
-             ${e?.policy}
-           </span>
-           </div>
-         </div>
-         <div
-           style="color : ${e?.result === "entailed" ? "#00D3AF" : "red"}"
-         >
-           <div style="font-weight: bold;">Result : <span style="text-transform: capitalize;">
-           ${e?.result}
-         </span></div>
-         </div>
-       </div>
-     </div>
-     ${e?.warnings?.map(
-       (warning: any, i: number) =>
-         `<div
-         key={warning + i}
-         style="display: flex; flex-direction: column; gap: 0.75rem;"
-       >
-         <div style="display: flex; flex-direction: column; font-size: 1rem; padding: 1rem 0.5rem; background-color: #ebecfe; gap: 0.5rem; border-left: 0.25rem solid #44a0f4;">
-           <div style="font-size: 1.25rem;">Clause Detail</div>
-           <div style="display: flex; flex-direction: column; gap: 0.25rem;">
-             <div style="font-weight: bold;">
-               Policy ${index + 1} : Warning ${i + 1} of ${e?.warnings?.length}
-             </div>
-             <div>
-               <div style="font-weight: bold;">Original Clause : <span style="font-weight: 100;">${
-                 warning?.clause
-               }</span></div>
-             </div>
-             <div style="border-left: 0.25rem solid #fb8a02; background-color: #e8f5e9; padding-left: 0.5rem;">
-               <div style="font-weight: bold;">Differences : 
-               <span style="font-weight: 100;">${warning?.differences}</span>
-               </div>
-             </div>
-             <div style="color: red; font-weight: bold;">
-               <div>Risks : 
-               <span>${warning?.risks}</span>
-               </div>
-             </div>
-           </div>
-         </div>
-         <div style="display: flex; flex-direction: column; font-size: 1rem; padding: 1rem 0.5rem; background-color: #ebecfe; gap: 0.5rem; border-left: 0.25rem solid #44a0f4;">
-           <div style="font-size: 1.25rem;">Redline Comparison</div>
-           <div>
-               <div style="font-weight: bold;">Redline Text : 
-               <span>${warning?.redLine}</span>
-               </div>
-             </div>
-         </div>
-         <div style="display: flex; flex-direction: column; font-size: 1rem; padding: 1rem 0.5rem; background-color: #e8f5e9; gap: 0.5rem; border-left: 0.25rem solid #47ae4b;">
-           <div style="font-size: 1.25rem;">Revised Clauses</div>
-           <div>${warning?.revisedClause}</div>
-         </div>
-       </div>`
-     )}
-   </div>
- </div>`;
-   })
-   .join("</br>")}
+  ${currentPolicies
+    ?.map(
+      (e: any, index: number) =>
+        `<div
+        key=${"policy-" + index}
+        style="margin-bottom: 1.25rem;"
+      >
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; background-color: #eef; padding: 1.25rem; border-radius: 8px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; gap: 0.5rem;">
+            <div style="font-weight: bold; padding: 0.625rem;">
+              Compliance ${index + 1} / ${currentPolicies?.length} :
+              <span style="margin-left: 0.25rem; font-weight: 100;">
+                ${e?.policy}
+              </span>
+            </div>
+          </div>
+          <div
+            style='background-color: ${
+              e?.result === "entailed" ? "#e8f5e9" : "#f2dede"
+            }; font-weight: bold; padding: 0.625rem;'
+          >
+            Result :
+            <span style="margin-left: 0.25rem; font-weight: 100;">
+              ${e?.result}
+            </span>
+          </div>
+          ${e?.warnings?.map(
+            (warning: any, i: number) =>
+              `<div
+              key=${"warning-" + i}
+              style="display: flex; flex-direction: column; gap: 0.5rem;"
+            >
+              <div style="font-weight: bold; background-color: #d9edf7; padding: 0.625rem;">
+                Clause :
+                <span style="margin-left: 0.25rem; font-weight: 100;">
+                  ${warning?.clause}
+                </span>
+              </div>
+              <div style="font-weight: bold; background-color: #fcf8e3; padding: 0.625rem;">
+                Differences :
+                <span style="margin-left: 0.25rem; font-weight: 100;">
+                  ${warning?.differences}
+                </span>
+              </div>
+              <div style="font-weight: bold; background-color: #f2dede; padding: 0.625rem;">
+                Risks :
+                <span style="margin-left: 0.25rem; font-weight: 100;">
+                  ${warning?.risks}
+                </span>
+              </div>
+              <div style="font-weight: bold; background-color: #fcf8e3; padding: 0.625rem;">
+                Redline :
+                <span style="margin-left: 0.25rem; font-weight: 100;">
+                  ${
+                    warning?.redLine
+                      ? warning?.redLine
+                      : `<span style="margin-left: 0.375rem;">N/A</span>`
+                  }
+                </span>
+              </div>
+              <div style="font-weight: bold; background-color: #e8f5e9; padding: 0.625rem;">
+                Revised Clause :
+                <span style="margin-left: 0.25rem; font-weight: 100;">
+                  ${warning?.revisedClause}
+                </span>
+              </div>
+            </div>`
+          )}
+        </div>
+      </div>`
+    )
+    .join("</br>")}
 </div>
 `;
 

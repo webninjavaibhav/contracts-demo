@@ -14,6 +14,7 @@ const ContractComparison = () => {
     loading,
     comparisonHandler,
     onUploadFiles,
+    deleteFilesHandler,
   } = useCompareContracts();
 
   return (
@@ -23,6 +24,7 @@ const ContractComparison = () => {
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
         onClick={comparisonHandler}
+        onDelete={deleteFilesHandler}
         loading={loading}
       />
       <div className="bg-[#fff] rounded-xl min-h-[600px]">

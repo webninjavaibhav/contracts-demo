@@ -17,6 +17,7 @@ const ContractAnalysis = () => {
     analyzeHandler,
     onUploadFiles,
     handleChange,
+    deleteFilesHandler,
   } = useContractAnalysis();
 
   return (
@@ -28,9 +29,10 @@ const ContractAnalysis = () => {
         policy={policy}
         setPolicy={setPolicy}
         onClick={analyzeHandler}
+        onDelete={deleteFilesHandler}
         loading={loading}
       />
-      <div className="bg-[#fff] rounded-xl min-h-[600px]">
+      <div className="bg-[#fff] rounded-xl min-h-[300px]">
         <Summary
           value={value}
           loading={loading}

@@ -23,6 +23,11 @@ export const useContractAnalysis = () => {
     setValue(newValue);
   };
 
+  const deleteFilesHandler = (fileName: string) => {
+    const updatedFiles = uploadedFiles?.filter((e) => e?.name !== fileName);
+    setUploadFiles(updatedFiles);
+  };
+
   const analyzeHandler = async () => {
     setLoading(true);
     const data = new FormData();
@@ -50,5 +55,6 @@ export const useContractAnalysis = () => {
     analyzeHandler,
     onUploadFiles,
     handleChange,
+    deleteFilesHandler,
   };
 };

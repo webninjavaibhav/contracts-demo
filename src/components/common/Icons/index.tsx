@@ -4,6 +4,11 @@ import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import SendToMobileIcon from "@mui/icons-material/SendToMobile";
 import FlagIcon from "@mui/icons-material/Flag";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import ArticleIcon from "@mui/icons-material/Article";
+import StickyNote2Icon from "@mui/icons-material/StickyNote2";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 export default {
   analysisIcon: AnalyticsIcon,
@@ -12,4 +17,9 @@ export default {
   sliderIcon: SendToMobileIcon,
   flagIcon: FlagIcon,
   rightArrow: ChevronRightIcon,
+  pdfIcon: PictureAsPdfIcon,
+  docIcon: ArticleIcon,
+  textIcon: StickyNote2Icon,
+  crossIcon: HighlightOffIcon,
+  arrowUpIcon: ArrowUpwardIcon,
 };

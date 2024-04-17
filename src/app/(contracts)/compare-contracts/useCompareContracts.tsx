@@ -19,6 +19,13 @@ export const useCompareContracts = () => {
     });
   };
 
+  const deleteFilesHandler = (fileName: string) => {
+    const deletedFileIndex = uploadedFiles?.findIndex(
+      (e) => e?.name === fileName
+    );
+    uploadedFiles?.splice(0, deletedFileIndex);
+  };
+
   const comparisonHandler = async () => {
     setLoading(true);
     const data = new FormData();
@@ -40,5 +47,6 @@ export const useCompareContracts = () => {
     loading,
     comparisonHandler,
     onUploadFiles,
+    deleteFilesHandler,
   };
 };

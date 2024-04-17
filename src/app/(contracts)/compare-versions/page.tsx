@@ -14,6 +14,7 @@ const VersionComparison = () => {
     loading,
     comparisonHandler,
     onUploadFiles,
+    deleteFilesHandler,
   } = useCompareVersions();
 
   return (
@@ -23,6 +24,7 @@ const VersionComparison = () => {
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
         onClick={comparisonHandler}
+        onDelete={deleteFilesHandler}
         loading={loading}
       />
       <div className="bg-[#fff] rounded-xl min-h-[600px]">

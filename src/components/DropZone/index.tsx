@@ -1,6 +1,8 @@
 import { useDropzone } from "react-dropzone";
 import { Button } from "../common/Button";
 import { Box } from "@mui/material";
+import uploadIcon from "../../../public/images/upload.png";
+import Image from "next/image";
 
 const DropZone = (props: any) => {
   const { uploadedFiles, onUploadFiles } = props;
@@ -19,20 +21,19 @@ const DropZone = (props: any) => {
     <>
       <div
         {...getRootProps()}
-        className="grid place-content-center justify-center border-2 h-[125px]"
+        className="grid place-content-center justify-center border-dashed border-4 border-[#00D3AF] rounded-lg min-h-[400px] cursor-pointer"
       >
         <Box
           className={{
             ...getInputProps(),
           }}
         >
-          <Button
-            component="label"
-            variant="contained"
-            className="bg-[#00D3AF] hover:bg-[#00D3AF]"
-          >
-            Upload
-          </Button>
+          <Image
+            src={uploadIcon}
+            alt="upload-icon"
+            width={250}
+            height={300}
+          />
         </Box>
       </div>
     </>
