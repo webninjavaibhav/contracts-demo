@@ -25,7 +25,7 @@ const UploadedFiles = ({
   loading: boolean;
 }) => {
   return (
-    <div className="flex flex-col gap-4 bg-[#fff] p-4 rounded-xl min-h-[500px]">
+    <div className="flex flex-col gap-6 bg-[#fff] p-7 rounded-xl min-h-[600px]">
       <div className="flex font-semibold text-2xl">{title}</div>
       <div className={`grid grid-cols-[auto_0.7fr] gap-5`}>
         <DropZone
@@ -40,7 +40,7 @@ const UploadedFiles = ({
       <div className="grid grid-cols-[1fr]">
         <div>
           {title === "Contract Analysis" ? (
-            <div className="flex border-2 border-black rounded-[4px] w-full">
+            <div className="flex border-2 border-[#343A40] rounded-[4px] w-full">
               <input
                 type="text"
                 value={policy}
@@ -54,7 +54,7 @@ const UploadedFiles = ({
                   variant="contained"
                   onClick={onClick}
                   disabled={loading}
-                  className="bg-[#343A40] p-2 cursor-pointer flex items-center gap-1"
+                  className="bg-[#00D3AF]  hover:bg-[#00D3AF] p-2 cursor-pointer flex items-center gap-1"
                 >
                   {loading ? (
                     <CircularProgress
