@@ -27,11 +27,7 @@ const UploadedFiles = ({
   return (
     <div className="flex flex-col gap-4 bg-[#fff] p-4 rounded-xl min-h-[500px]">
       <div className="flex font-semibold text-2xl">{title}</div>
-      <div
-        className={`grid grid-cols-${
-          uploadedFiles?.length ? "[auto_0.7fr]" : "[auto]"
-        } gap-5`}
-      >
+      <div className={`grid grid-cols-[auto_0.7fr] gap-5`}>
         <DropZone
           uploadedFiles={uploadedFiles}
           onUploadFiles={onUploadFiles}

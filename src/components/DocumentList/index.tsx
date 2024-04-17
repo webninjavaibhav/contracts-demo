@@ -20,39 +20,45 @@ const DocumentList = ({
 
   return (
     <div className="flex flex-col justify-start p-2">
-      <div className="flex flex-col gap-3 mt-4 max-h-[400px] overflow-auto">
-        {uploadedFiles?.map((data: any, index: number) => (
-          <div
-            className="flex gap-5 items-center text-xl p-2"
-            key={index}
-          >
-            <div>
-              {data?.name?.includes("pdf") ? (
-                <Icons.pdfIcon sx={{ color: "red", fontSize: 50 }} />
-              ) : data?.name?.includes("doc") ? (
-                <Icons.docIcon sx={{ color: "blue", fontSize: 50 }} />
-              ) : (
-                <Icons.textIcon sx={{ fontSize: 50 }} />
-              )}
-            </div>
-            <div className="grid grid-cols-[1fr_auto] w-full">
+      {uploadedFiles?.length ? (
+        <div className="flex flex-col gap-3 mt-4 max-h-[400px] overflow-auto">
+          {uploadedFiles?.map((data: any, index: number) => (
+            <div
+              className="flex gap-5 items-center text-xl p-2"
+              key={index}
+            >
               <div>
-                <div className="font-semibold">{data?.name}</div>
-                <div className="text-sm">{formatFileSize(data?.size)}</div>
+                {data?.name?.includes("pdf") ? (
+                  <Icons.pdfIcon sx={{ color: "red", fontSize: 50 }} />
+                ) : data?.name?.includes("doc") ? (
+                  <Icons.docIcon sx={{ color: "blue", fontSize: 50 }} />
+                ) : (
+                  <Icons.textIcon sx={{ fontSize: 50 }} />
+                )}
               </div>
-              <Icons.crossIcon
-                sx={{
-                  color: "red",
-                  fontSize: 20,
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                }}
-                onClick={() => onDelete(data?.name)}
-              />
+              <div className="grid grid-cols-[1fr_auto] w-full">
+                <div>
+                  <div className="font-semibold">{data?.name}</div>
+                  <div className="text-sm">{formatFileSize(data?.size)}</div>
+                </div>
+                <Icons.crossIcon
+                  sx={{
+                    color: "red",
+                    fontSize: 20,
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                  }}
+                  onClick={() => onDelete(data?.name)}
+                />
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid place-content-center h-full font-semibold text-xl">
+          No Documents Upload
+        </div>
+      )}
     </div>
   );
 };
