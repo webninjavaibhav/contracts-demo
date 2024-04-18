@@ -20,7 +20,7 @@ const VersionComparison = () => {
   return (
     <div className="flex flex-col gap-5">
       <UploadedFiles
-        title="Contract Comparison"
+        title="Version Comparison"
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
         onClick={comparisonHandler}

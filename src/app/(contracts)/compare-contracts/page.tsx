@@ -12,6 +12,8 @@ const ContractComparison = () => {
     uploadedFiles,
     comparedResult,
     loading,
+    prompt,
+    setPrompt,
     comparisonHandler,
     onUploadFiles,
     deleteFilesHandler,
@@ -23,6 +25,8 @@ const ContractComparison = () => {
         title="Contract Comparison"
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
+        inputValue={prompt}
+        setInputValue={setPrompt}
         onClick={comparisonHandler}
         onDelete={deleteFilesHandler}
         loading={loading}

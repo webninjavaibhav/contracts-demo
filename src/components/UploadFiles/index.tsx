@@ -9,8 +9,8 @@ const UploadedFiles = ({
   title,
   uploadedFiles,
   onUploadFiles,
-  policy,
-  setPolicy,
+  inputValue,
+  setInputValue,
   onClick,
   onDelete,
   loading,
@@ -18,8 +18,8 @@ const UploadedFiles = ({
   title: string;
   uploadedFiles: any[];
   onUploadFiles: (file: File[], uploadedFiles: File[]) => void;
-  policy?: string;
-  setPolicy?: (policy: string) => void;
+  inputValue?: string;
+  setInputValue?: (policy: string) => void;
   onClick: () => void;
   onDelete: (fileName: string) => void;
   loading: boolean;
@@ -39,13 +39,15 @@ const UploadedFiles = ({
       </div>
       <div className="grid grid-cols-[1fr]">
         <div>
-          {title === "Contract Analysis" ? (
+          {title !== "Version Comparison" ? (
             <div className="flex border-2 border-[#343A40] rounded-[4px] w-full">
               <input
                 type="text"
-                value={policy}
-                placeholder="Policies"
-                onChange={(e) => setPolicy?.(e.target.value)}
+                value={inputValue}
+                placeholder={
+                  title === "Contract Comparison" ? "Prompt" : "Policies"
+                }
+                onChange={(e) => setInputValue?.(e.target.value)}
                 className="mr-2 px-3 py-1 flex-grow-0 outline-none w-full"
               />
               <div className="p-1">

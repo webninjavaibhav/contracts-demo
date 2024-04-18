@@ -9,6 +9,7 @@ export const useCompareContracts = () => {
     comparisons: any[];
   }>({ comparisons: [] });
   const [loading, setLoading] = useState<boolean>(false);
+  const [prompt, setPrompt] = useState<string>("");
 
   const onUploadFiles = (file: File[], uploadedFiles: File[]) => {
     file?.forEach((f) => {
@@ -32,6 +33,7 @@ export const useCompareContracts = () => {
     uploadedFiles.forEach((file, index) => {
       data.set(`file${index + 1}`, file);
     });
+    prompt && data.set("prompt", prompt);
     const response = await fetch(`api/compare-contracts`, {
       method: "POST",
       body: data,
@@ -45,6 +47,8 @@ export const useCompareContracts = () => {
     uploadedFiles,
     comparedResult,
     loading,
+    prompt,
+    setPrompt,
     comparisonHandler,
     onUploadFiles,
     deleteFilesHandler,

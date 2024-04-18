@@ -1,10 +1,10 @@
 "use client";
 
 import { useContractAnalysis } from "./useContractAnalysis";
-import { Button } from "@/components/common/Button";
-import { TextField, Typography } from "@mui/material";
 import Summary from "@/components/Summary";
 import UploadedFiles from "@/components/UploadFiles";
+import { Context } from "@/store/Context";
+import { useContext } from "react";
 
 const ContractAnalysis = () => {
   const {
@@ -19,6 +19,9 @@ const ContractAnalysis = () => {
     handleChange,
     deleteFilesHandler,
   } = useContractAnalysis();
+  const { value: appMixer } = useContext(Context);
+
+  console.log("appMixer", appMixer);
 
   return (
     <div className="flex flex-col gap-5">
@@ -26,8 +29,8 @@ const ContractAnalysis = () => {
         title="Contract Analysis"
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
-        policy={policy}
-        setPolicy={setPolicy}
+        inputValue={policy}
+        setInputValue={setPolicy}
         onClick={analyzeHandler}
         onDelete={deleteFilesHandler}
         loading={loading}
