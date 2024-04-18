@@ -15,6 +15,7 @@ const VersionComparison = () => {
     comparisonHandler,
     onUploadFiles,
     deleteFilesHandler,
+    cancelRequestHandler,
   } = useCompareVersions();
 
   return (
@@ -24,6 +25,7 @@ const VersionComparison = () => {
         uploadedFiles={uploadedFiles}
         onUploadFiles={onUploadFiles}
         onClick={comparisonHandler}
+        onCancel={cancelRequestHandler}
         onDelete={deleteFilesHandler}
         loading={loading}
       />

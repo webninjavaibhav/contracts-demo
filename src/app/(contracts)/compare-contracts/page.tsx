@@ -17,6 +17,7 @@ const ContractComparison = () => {
     comparisonHandler,
     onUploadFiles,
     deleteFilesHandler,
+    cancelRequestHandler,
   } = useCompareContracts();
 
   return (
@@ -28,6 +29,7 @@ const ContractComparison = () => {
         inputValue={prompt}
         setInputValue={setPrompt}
         onClick={comparisonHandler}
+        onCancel={cancelRequestHandler}
         onDelete={deleteFilesHandler}
         loading={loading}
       />

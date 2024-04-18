@@ -9,6 +9,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import DangerousIcon from "@mui/icons-material/Dangerous";
 
 export default {
   analysisIcon: AnalyticsIcon,
@@ -22,4 +23,5 @@ export default {
   textIcon: StickyNote2Icon,
   crossIcon: HighlightOffIcon,
   arrowUpIcon: ArrowUpwardIcon,
+  stopIcon: DangerousIcon,
 };

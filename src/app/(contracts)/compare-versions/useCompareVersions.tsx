@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Context } from "@/store/Context";
+import { useContext, useEffect, useState } from "react";
 
 export const useCompareVersions = () => {
   const [uploadedFiles, setUploadFiles] = useState<File[]>([]);
@@ -9,6 +10,7 @@ export const useCompareVersions = () => {
     comparisons: any[];
   }>({ comparisons: [] });
   const [loading, setLoading] = useState<boolean>(false);
+  const { controller, stopRequests } = useContext(Context);
 
   const onUploadFiles = (file: File[], uploadedFiles: File[]) => {
     file?.forEach((f) => {
@@ -35,9 +37,15 @@ export const useCompareVersions = () => {
     const response = await fetch(`api/compare-versions`, {
       method: "POST",
       body: data,
+      signal: (controller as any)?.signal,
     });
     const result = await response.json();
     setComparedResult(result?.data);
+    setLoading(false);
+  };
+
+  const cancelRequestHandler = () => {
+    stopRequests();
     setLoading(false);
   };
 
@@ -48,5 +56,6 @@ export const useCompareVersions = () => {
     comparisonHandler,
     onUploadFiles,
     deleteFilesHandler,
+    cancelRequestHandler,
   };
 };

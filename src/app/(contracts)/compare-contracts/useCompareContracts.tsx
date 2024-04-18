@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Context } from "@/store/Context";
+import { useContext, useEffect, useState } from "react";
 
 export const useCompareContracts = () => {
   const [uploadedFiles, setUploadFiles] = useState<File[]>([]);
@@ -10,6 +11,8 @@ export const useCompareContracts = () => {
   }>({ comparisons: [] });
   const [loading, setLoading] = useState<boolean>(false);
   const [prompt, setPrompt] = useState<string>("");
+
+  const { controller, stopRequests } = useContext(Context);
 
   const onUploadFiles = (file: File[], uploadedFiles: File[]) => {
     file?.forEach((f) => {
@@ -37,9 +40,15 @@ export const useCompareContracts = () => {
     const response = await fetch(`api/compare-contracts`, {
       method: "POST",
       body: data,
+      signal: (controller as any)?.signal,
     });
     const result = await response.json();
     setComparedResult(result?.data);
+    setLoading(false);
+  };
+
+  const cancelRequestHandler = () => {
+    stopRequests();
     setLoading(false);
   };
 
@@ -52,5 +61,6 @@ export const useCompareContracts = () => {
     comparisonHandler,
     onUploadFiles,
     deleteFilesHandler,
+    cancelRequestHandler,
   };
 };

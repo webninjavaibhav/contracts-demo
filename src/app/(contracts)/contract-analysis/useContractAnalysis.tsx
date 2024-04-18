@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { Context } from "@/store/Context";
+import { useContext, useEffect, useState } from "react";
 
 export const useContractAnalysis = () => {
   const [uploadedFiles, setUploadFiles] = useState<File[]>([]);
@@ -9,6 +10,7 @@ export const useContractAnalysis = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [policy, setPolicy] = useState<string>("");
   const [value, setValue] = useState(0);
+  const { controller, stopRequests } = useContext(Context);
 
   const onUploadFiles = (file: File[], uploadedFiles: File[]) => {
     file?.forEach((f) => {
@@ -38,10 +40,16 @@ export const useContractAnalysis = () => {
     const response = await fetch(`api/contract-analysis`, {
       method: "POST",
       body: data,
+      signal: (controller as any)?.signal,
     });
     const result = await response.json();
     setAnalyzedFiles(result?.data?.[0]);
     setPolicy("");
+    setLoading(false);
+  };
+
+  const cancelRequestHandler = () => {
+    stopRequests();
     setLoading(false);
   };
 
@@ -56,5 +64,6 @@ export const useContractAnalysis = () => {
     onUploadFiles,
     handleChange,
     deleteFilesHandler,
+    cancelRequestHandler,
   };
 };

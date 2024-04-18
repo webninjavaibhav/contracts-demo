@@ -3,6 +3,7 @@
 import { useContractAnalysis } from "./useContractAnalysis";
 import Summary from "@/components/Summary";
 import UploadedFiles from "@/components/UploadFiles";
+import { Button } from "@/components/common/Button";
 import { Context } from "@/store/Context";
 import { useContext } from "react";
 
@@ -18,6 +19,7 @@ const ContractAnalysis = () => {
     onUploadFiles,
     handleChange,
     deleteFilesHandler,
+    cancelRequestHandler,
   } = useContractAnalysis();
   const { value: appMixer } = useContext(Context);
 
@@ -32,6 +34,7 @@ const ContractAnalysis = () => {
         inputValue={policy}
         setInputValue={setPolicy}
         onClick={analyzeHandler}
+        onCancel={cancelRequestHandler}
         onDelete={deleteFilesHandler}
         loading={loading}
       />

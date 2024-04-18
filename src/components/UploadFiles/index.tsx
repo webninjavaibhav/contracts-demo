@@ -12,6 +12,7 @@ const UploadedFiles = ({
   inputValue,
   setInputValue,
   onClick,
+  onCancel,
   onDelete,
   loading,
 }: {
@@ -21,6 +22,7 @@ const UploadedFiles = ({
   inputValue?: string;
   setInputValue?: (policy: string) => void;
   onClick: () => void;
+  onCancel?: () => void;
   onDelete: (fileName: string) => void;
   loading: boolean;
 }) => {
@@ -50,13 +52,13 @@ const UploadedFiles = ({
                 onChange={(e) => setInputValue?.(e.target.value)}
                 className="mr-2 px-3 py-1 flex-grow-0 outline-none w-full"
               />
-              <div className="p-1">
+              <div className="p-1 flex gap-2">
                 <Button
                   type="submit"
                   variant="contained"
                   onClick={onClick}
                   disabled={loading}
-                  className="bg-[#00D3AF]  hover:bg-[#00D3AF] p-2 cursor-pointer flex items-center gap-1"
+                  className="bg-[#00D3AF]  hover:bg-[#00D3AF] p-2 cursor-pointer flex items-center gap-1 min-w-[100px]"
                 >
                   {loading ? (
                     <CircularProgress
@@ -68,16 +70,25 @@ const UploadedFiles = ({
                   )}
                   <Icons.arrowUpIcon sx={{ fontSize: 20, marginBottom: 0.3 }} />
                 </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  onClick={onCancel}
+                  className="bg-red-500  hover:bg-red-500 p-2 cursor-pointer flex items-center gap-1 min-w-[70px]"
+                >
+                  Stop
+                  <Icons.stopIcon sx={{ fontSize: 20, marginBottom: 0.3 }} />
+                </Button>
               </div>
             </div>
           ) : (
-            <div className="flex justify-end p-1">
+            <div className="flex justify-end p-1 gap-2">
               <Button
                 type="submit"
                 variant="contained"
                 onClick={onClick}
                 disabled={loading}
-                className="bg-[#00D3AF]  hover:bg-[#00D3AF] p-2 cursor-pointer flex items-center gap-1"
+                className="bg-[#00D3AF]  hover:bg-[#00D3AF] p-2 cursor-pointer flex items-center gap-1 min-w-[100px]"
               >
                 {loading ? (
                   <CircularProgress
@@ -88,6 +99,15 @@ const UploadedFiles = ({
                   "Submit"
                 )}
                 <Icons.arrowUpIcon sx={{ fontSize: 20, marginBottom: 0.3 }} />
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                onClick={onCancel}
+                className="bg-red-500  hover:bg-red-500 p-2 cursor-pointer flex items-center gap-1 min-w-[70px]"
+              >
+                Stop
+                <Icons.stopIcon sx={{ fontSize: 20, marginBottom: 0.3 }} />
               </Button>
             </div>
           )}
