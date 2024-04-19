@@ -146,7 +146,7 @@ const CompareVersion = ({
               ))}
             </div>
           </div>
-        ) : !loading ? (
+        ) : !loading && !error ? (
           <div className="font-light">
             Please add some files to compare data
           </div>

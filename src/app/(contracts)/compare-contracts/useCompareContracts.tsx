@@ -33,6 +33,7 @@ export const useCompareContracts = () => {
   };
 
   const comparisonHandler = async () => {
+    setError("");
     setLoading(true);
     try {
       const data = new FormData();

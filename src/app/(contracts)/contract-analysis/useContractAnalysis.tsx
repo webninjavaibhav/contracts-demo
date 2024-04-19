@@ -32,6 +32,7 @@ export const useContractAnalysis = () => {
   };
 
   const analyzeHandler = async () => {
+    setError("");
     setLoading(true);
     try {
       const data = new FormData();

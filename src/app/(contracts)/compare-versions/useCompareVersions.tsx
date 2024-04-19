@@ -31,6 +31,7 @@ export const useCompareVersions = () => {
   };
 
   const comparisonHandler = async () => {
+    setError("");
     setLoading(true);
     try {
       const data = new FormData();

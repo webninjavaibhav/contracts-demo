@@ -100,7 +100,7 @@ const CompareContracts = ({
       )}
       {data?.html ? (
         <div dangerouslySetInnerHTML={{ __html: data?.html }}></div>
-      ) : !loading ? (
+      ) : !loading && !error ? (
         <div className="font-light">
           Please add some files to summarize data
         </div>

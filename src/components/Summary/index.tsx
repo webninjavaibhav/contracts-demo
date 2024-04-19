@@ -231,7 +231,7 @@ const Summary = ({
               </>
             );
           })
-        ) : !loading ? (
+        ) : !loading && !error ? (
           <div className="font-light">
             Please add some files to summarize data
           </div>
