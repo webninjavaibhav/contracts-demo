@@ -79,13 +79,13 @@ async function generatePDF(data: any, compareFor: string) {
   }
 }
 
-const Compare = ({
+const CompareContracts = ({
   loading,
   data,
   compareFor,
 }: {
   loading: boolean;
-  data: { summary?: number; comparisons: any[] };
+  data: { summary?: number; comparisons: any[]; html?: string };
   compareFor: string;
 }) => {
   return (
@@ -96,60 +96,13 @@ const Compare = ({
           <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
-      <div id="compare-result-container">
-        {data?.comparisons?.length && !loading ? (
-          <div>
-            <div className="font-bold text-slate-400 text-lg">
-              Overall Summary
-            </div>
-            <div className="font-medium mb-4 ">{data?.summary}</div>
-            <div className="flex flex-col gap-4">
-              {data?.comparisons?.map((e: any, index: number) => (
-                <div
-                  className="font-medium"
-                  key={index + e}
-                >
-                  <div className="text-slate-400 text-lg font-bold">
-                    {e?.heading}
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    {e?.[`${compareFor}1`] ? (
-                      <div className="flex flex-col">
-                        <div className="font-bold capitalize">
-                          {compareFor} 1 :
-                        </div>
-                        <div className="pl-5 list-disc">
-                          {e?.[`${compareFor}1`]}
-                        </div>
-                      </div>
-                    ) : null}
-                    {e?.[`${compareFor}2`] ? (
-                      <div className="flex flex-col">
-                        <div className="font-bold capitalize">
-                          {compareFor} 2 :
-                        </div>
-                        <div className="pl-5 list-disc">
-                          {e?.[`${compareFor}2`]}
-                        </div>
-                      </div>
-                    ) : null}
-                    {e?.summary ? (
-                      <div className="flex flex-col">
-                        <div className="font-bold">Summary : </div>
-                        <div className="pl-5 list-disc">{e?.summary}</div>
-                      </div>
-                    ) : null}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : !loading ? (
-          <div className="font-light">
-            Please add some files to compare data
-          </div>
-        ) : null}
-      </div>
+      {data?.html ? (
+        <div dangerouslySetInnerHTML={{ __html: data?.html }}></div>
+      ) : !loading ? (
+        <div className="font-light">
+          Please add some files to summarize data
+        </div>
+      ) : null}
       {data?.comparisons?.length && !loading ? (
         <Button
           component="label"
@@ -165,4 +118,4 @@ const Compare = ({
   );
 };
 
-export default Compare;
+export default CompareContracts;

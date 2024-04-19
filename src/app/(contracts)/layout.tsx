@@ -1,7 +1,7 @@
 "use client";
 
 import Navigation from "@/components/common/Navigation";
-import { Context, ContextProvider } from "@/store/Context";
+import { Context } from "@/store/Context";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
 import { useContext, useEffect } from "react";
@@ -36,7 +36,14 @@ export default function ContractsLayout({
           const appmixer = new (window as any).Appmixer({
             baseUrl: process.env.NEXT_PUBLIC_APP_MIXER_BASE_URL,
           });
-          changeHandler(appmixer);
+          let username = "reactvirtual@rabodis.com";
+          let password = "yardikube";
+          appmixer.api
+            .authenticateUser(username, password)
+            .then((auth: any) => {
+              appmixer.set("accessToken", auth.token);
+              changeHandler(appmixer);
+            });
         }}
       />
       <Navigation />

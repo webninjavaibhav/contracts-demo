@@ -25,7 +25,7 @@ async function generatePDF(currentPolicies: any, currentDocumentName: string) {
           </div>
           <div
             style='background-color: ${
-              e?.result === "entailed" ? "#e8f5e9" : "#f2dede"
+              e?.result === "contradicted" ? "#e8f5e9" : "#f2dede"
             }; font-weight: bold; padding: 0.625rem;'
           >
             Result :
@@ -164,7 +164,7 @@ const Summary = ({
 
                     <div
                       className={`font-semibold p-2.5 ${
-                        e?.result === "entailed"
+                        e?.result !== "contradicted"
                           ? "bg-[#e8f5e9]"
                           : "bg-[#f2dede]"
                       }`}

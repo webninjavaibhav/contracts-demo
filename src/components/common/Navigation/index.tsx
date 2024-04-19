@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import { Button } from "../Button";
+import { List, ListItemText } from "@mui/material";
+import { usePathname, useRouter } from "next/navigation";
 import Icons from "../Icons";
 import BrandLogo from "../../../../public/images/brand-logo.png";
 import Image from "next/image";
@@ -39,6 +38,36 @@ const Navigation = () => {
       name: "Version Comparison",
       route: "/compare-versions",
       icon: <Icons.compareVersions fontSize="small" />,
+    },
+    {
+      name: "People Tasks",
+      route: "/people-tasks",
+      icon: <Icons.peopleIcon fontSize="small" />,
+    },
+    {
+      name: "Connectors",
+      route: "/connectors",
+      icon: <Icons.connectorIcon fontSize="small" />,
+    },
+    {
+      name: "Flow Manager",
+      route: "/flow-manager",
+      icon: <Icons.flowManagerIcon fontSize="small" />,
+    },
+    {
+      name: "Designer",
+      route: "/designer",
+      icon: <Icons.designerIcon fontSize="small" />,
+    },
+    {
+      name: "Integrations",
+      route: "/integrations",
+      icon: <Icons.integrationIcon fontSize="small" />,
+    },
+    {
+      name: "Insights Logs",
+      route: "/insights-logs",
+      icon: <Icons.insightIcon fontSize="small" />,
     },
   ];
 

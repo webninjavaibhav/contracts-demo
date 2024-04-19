@@ -5,7 +5,8 @@ import { useCompareVersions } from "./useCompareVersions";
 import UploadedFiles from "@/components/UploadFiles";
 import { Typography } from "@mui/material";
 import { Button } from "@/components/common/Button";
-import Compare from "@/components/Compare";
+import Compare from "@/components/CompareVersion";
+import CompareVersion from "@/components/CompareVersion";
 
 const VersionComparison = () => {
   const {
@@ -30,7 +31,7 @@ const VersionComparison = () => {
         loading={loading}
       />
       <div className="bg-[#fff] rounded-xl min-h-[600px]">
-        <Compare
+        <CompareVersion
           loading={loading}
           data={comparedResult}
           compareFor={"version"}

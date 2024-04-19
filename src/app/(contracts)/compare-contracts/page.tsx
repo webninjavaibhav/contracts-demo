@@ -3,9 +3,8 @@
 import React from "react";
 import { useCompareContracts } from "./useCompareContracts";
 import UploadedFiles from "@/components/UploadFiles";
-import { Typography } from "@mui/material";
-import { Button } from "@/components/common/Button";
-import Compare from "@/components/Compare";
+import Compare from "@/components/CompareVersion";
+import CompareContracts from "@/components/CompareContracts";
 
 const ContractComparison = () => {
   const {
@@ -34,7 +33,7 @@ const ContractComparison = () => {
         loading={loading}
       />
       <div className="bg-[#fff] rounded-xl min-h-[600px]">
-        <Compare
+        <CompareContracts
           loading={loading}
           data={comparedResult}
           compareFor={"contract"}

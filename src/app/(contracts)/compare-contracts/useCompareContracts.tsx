@@ -8,6 +8,7 @@ export const useCompareContracts = () => {
   const [comparedResult, setComparedResult] = useState<{
     summary?: number;
     comparisons: any[];
+    html?: string;
   }>({ comparisons: [] });
   const [loading, setLoading] = useState<boolean>(false);
   const [prompt, setPrompt] = useState<string>("");
@@ -44,6 +45,7 @@ export const useCompareContracts = () => {
     });
     const result = await response.json();
     setComparedResult(result?.data);
+    setPrompt("");
     setLoading(false);
   };
 
