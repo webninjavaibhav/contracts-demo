@@ -10,6 +10,8 @@ export const useCompareVersions = () => {
     comparisons: any[];
   }>({ comparisons: [] });
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState("");
+
   const { controller, stopRequests } = useContext(Context);
 
   const onUploadFiles = (file: File[], uploadedFiles: File[]) => {
@@ -30,18 +32,23 @@ export const useCompareVersions = () => {
 
   const comparisonHandler = async () => {
     setLoading(true);
-    const data = new FormData();
-    uploadedFiles.forEach((file, index) => {
-      data.set(`file${index + 1}`, file);
-    });
-    const response = await fetch(`api/compare-versions`, {
-      method: "POST",
-      body: data,
-      signal: (controller as any)?.signal,
-    });
-    const result = await response.json();
-    setComparedResult(result?.data);
-    setLoading(false);
+    try {
+      const data = new FormData();
+      uploadedFiles.forEach((file, index) => {
+        data.set(`file${index + 1}`, file);
+      });
+      const response = await fetch(`api/compare-versions`, {
+        method: "POST",
+        body: data,
+        signal: (controller as any)?.signal,
+      });
+      const result = await response.json();
+      setComparedResult(result?.data);
+    } catch (error) {
+      setError("Something went wrong, please try again");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const cancelRequestHandler = () => {
@@ -53,6 +60,7 @@ export const useCompareVersions = () => {
     uploadedFiles,
     comparedResult,
     loading,
+    error,
     comparisonHandler,
     onUploadFiles,
     deleteFilesHandler,

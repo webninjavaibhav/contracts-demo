@@ -10,6 +10,7 @@ export const useContractAnalysis = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [policy, setPolicy] = useState<string>("");
   const [value, setValue] = useState(0);
+  const [error, setError] = useState("");
   const { controller, stopRequests } = useContext(Context);
 
   const onUploadFiles = (file: File[], uploadedFiles: File[]) => {
@@ -32,20 +33,25 @@ export const useContractAnalysis = () => {
 
   const analyzeHandler = async () => {
     setLoading(true);
-    const data = new FormData();
-    uploadedFiles.forEach((file, index) => {
-      data.set(`file${index + 1}`, file);
-    });
-    policy && data.set("policies", policy);
-    const response = await fetch(`api/contract-analysis`, {
-      method: "POST",
-      body: data,
-      signal: (controller as any)?.signal,
-    });
-    const result = await response.json();
-    setAnalyzedFiles(result?.data?.[0]);
-    setPolicy("");
-    setLoading(false);
+    try {
+      const data = new FormData();
+      uploadedFiles.forEach((file, index) => {
+        data.set(`file${index + 1}`, file);
+      });
+      policy && data.set("policies", policy);
+      const response = await fetch(`api/contract-analysis`, {
+        method: "POST",
+        body: data,
+        signal: (controller as any)?.signal,
+      });
+      const result = await response.json();
+      setAnalyzedFiles(result?.data?.[0]);
+      setPolicy("");
+    } catch (error) {
+      setError("Something went wrong, please try again");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const cancelRequestHandler = () => {
@@ -59,6 +65,7 @@ export const useContractAnalysis = () => {
     value,
     loading,
     policy,
+    error,
     setPolicy,
     analyzeHandler,
     onUploadFiles,

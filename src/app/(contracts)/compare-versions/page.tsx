@@ -13,6 +13,7 @@ const VersionComparison = () => {
     uploadedFiles,
     comparedResult,
     loading,
+    error,
     comparisonHandler,
     onUploadFiles,
     deleteFilesHandler,
@@ -33,6 +34,7 @@ const VersionComparison = () => {
       <div className="bg-[#fff] rounded-xl min-h-[600px]">
         <CompareVersion
           loading={loading}
+          error={error}
           data={comparedResult}
           compareFor={"version"}
         />

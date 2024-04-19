@@ -12,6 +12,7 @@ const ContractComparison = () => {
     comparedResult,
     loading,
     prompt,
+    error,
     setPrompt,
     comparisonHandler,
     onUploadFiles,
@@ -35,6 +36,7 @@ const ContractComparison = () => {
       <div className="bg-[#fff] rounded-xl min-h-[600px]">
         <CompareContracts
           loading={loading}
+          error={error}
           data={comparedResult}
           compareFor={"contract"}
         />

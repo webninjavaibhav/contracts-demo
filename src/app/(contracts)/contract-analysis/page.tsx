@@ -11,6 +11,7 @@ const ContractAnalysis = () => {
     value,
     loading,
     policy,
+    error,
     setPolicy,
     analyzeHandler,
     onUploadFiles,
@@ -35,6 +36,7 @@ const ContractAnalysis = () => {
       <div className="bg-[#fff] rounded-xl min-h-[300px]">
         <Summary
           value={value}
+          error={error}
           loading={loading}
           analyzedFiles={analyzedFiles}
           handleChange={handleChange}

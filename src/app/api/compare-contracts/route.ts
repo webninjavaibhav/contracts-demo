@@ -18,21 +18,18 @@ export async function POST(req: NextRequest) {
       body: data,
     });
     const parsedRealResponse = await realResponse.json();
-    console.log("parsedRealResponse", parsedRealResponse);
     if (
       parsedRealResponse?.summary ||
       parsedRealResponse?.comparisons ||
       parsedRealResponse?.comparisons
     ) {
       resultantData = parsedRealResponse;
-      console.log("realBaseUrl", resultantData);
     } else {
       const mockResponse = await fetch(`${mockBaseUrl}/compareContracts`, {
         method: "POST",
         body: fileData,
       });
       resultantData = await mockResponse.json();
-      console.log("mockBaseUrl", resultantData);
     }
     return NextResponse.json({
       data: resultantData,

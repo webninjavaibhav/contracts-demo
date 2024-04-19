@@ -81,10 +81,12 @@ async function generatePDF(data: any, compareFor: string) {
 
 const CompareVersion = ({
   loading,
+  error,
   data,
   compareFor,
 }: {
   loading: boolean;
+  error: string;
   data: { summary?: number; comparisons: any[]; html?: string };
   compareFor: string;
 }) => {
@@ -161,6 +163,7 @@ const CompareVersion = ({
           Download PDF
         </Button>
       ) : null}
+      {error ? <div className="text-red-500 text-xl">{error}</div> : null}
     </div>
   );
 };

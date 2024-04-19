@@ -102,11 +102,13 @@ async function generatePDF(currentPolicies: any, currentDocumentName: string) {
 
 const Summary = ({
   value,
+  error,
   loading,
   analyzedFiles,
   handleChange,
 }: {
   value: number;
+  error: string;
   loading: boolean;
   handleChange: (event: React.SyntheticEvent, newValue: number) => void;
   analyzedFiles: { totalRecords: number; results: any[] };
@@ -226,9 +228,6 @@ const Summary = ({
                     ))}
                   </div>
                 </div>
-                {currentPolicies.length !== index + 1 && (
-                  <Divider className="my-5 bg-black border-2 border-black" />
-                )}
               </>
             );
           })
@@ -249,6 +248,7 @@ const Summary = ({
           Download PDF
         </Button>
       ) : null}
+      {error ? <div className="text-red-500 text-xl">{error}</div> : null}
     </div>
   );
 };

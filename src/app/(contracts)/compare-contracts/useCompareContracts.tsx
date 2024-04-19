@@ -12,6 +12,7 @@ export const useCompareContracts = () => {
   }>({ comparisons: [] });
   const [loading, setLoading] = useState<boolean>(false);
   const [prompt, setPrompt] = useState<string>("");
+  const [error, setError] = useState("");
 
   const { controller, stopRequests } = useContext(Context);
 
@@ -33,20 +34,25 @@ export const useCompareContracts = () => {
 
   const comparisonHandler = async () => {
     setLoading(true);
-    const data = new FormData();
-    uploadedFiles.forEach((file, index) => {
-      data.set(`file${index + 1}`, file);
-    });
-    prompt && data.set("prompt", prompt);
-    const response = await fetch(`api/compare-contracts`, {
-      method: "POST",
-      body: data,
-      signal: (controller as any)?.signal,
-    });
-    const result = await response.json();
-    setComparedResult(result?.data);
-    setPrompt("");
-    setLoading(false);
+    try {
+      const data = new FormData();
+      uploadedFiles.forEach((file, index) => {
+        data.set(`file${index + 1}`, file);
+      });
+      prompt && data.set("prompt", prompt);
+      const response = await fetch(`api/compare-contracts`, {
+        method: "POST",
+        body: data,
+        signal: (controller as any)?.signal,
+      });
+      const result = await response.json();
+      setComparedResult(result?.data);
+      setPrompt("");
+    } catch (error) {
+      setError("Something went wrong, please try again");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const cancelRequestHandler = () => {
@@ -59,6 +65,7 @@ export const useCompareContracts = () => {
     comparedResult,
     loading,
     prompt,
+    error,
     setPrompt,
     comparisonHandler,
     onUploadFiles,
