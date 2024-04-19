@@ -16,6 +16,7 @@ import AirIcon from "@mui/icons-material/Air";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 import InsightsIcon from "@mui/icons-material/Insights";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default {
   analysisIcon: AnalyticsIcon,
@@ -36,4 +37,5 @@ export default {
   designerIcon: DesignServicesIcon,
   integrationIcon: IntegrationInstructionsIcon,
   insightIcon: InsightsIcon,
+  searchIcon: SearchIcon,
 };

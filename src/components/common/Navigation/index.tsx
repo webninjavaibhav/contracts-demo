@@ -40,6 +40,11 @@ const Navigation = () => {
       icon: <Icons.compareVersions fontSize="small" />,
     },
     {
+      name: "Legal Wiki",
+      route: "/search",
+      icon: <Icons.searchIcon fontSize="small" />,
+    },
+    {
       name: "People Tasks",
       route: "/people-tasks",
       icon: <Icons.peopleIcon fontSize="small" />,
