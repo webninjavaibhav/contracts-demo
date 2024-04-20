@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const apiUrl = `${process.env.NEXT_PUBLIC_LEGAL_WIKI_BASE_URL}/search`;
+  const apiUrl = `http://rabodis-ai-legal-counsel-nprod.us-e2.cloudhub.io/api/search`;
 
   const { query, sources } = await req.json();
   const requestBody = { query, sources };
 
-  try {
+  try { 
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
