@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import CustomSelect from "@/components/common/MultiSelect";
 import Icons from "@/components/common/Icons";
+import { Button } from "@/components/common/Button";
 
 const allSources = ["Wikipedia", "Bing", "Ecosia"];
 const DEBOUNCE_THRESHOLD = 1000;
@@ -87,16 +88,30 @@ const Search = () => {
     search && setLoading(true);
     search && searchReply(search, data, true);
   };
+  const [currentPage, setCurrentPage] = useState(0);
 
+  const totalPages = Math.ceil(searchHints?.length / 5);
+
+  const nextPage = () => {
+    setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prevPage) => (prevPage - 1 + totalPages) % totalPages);
+  };
+
+  const startIndex = currentPage * 5;
+  const endIndex = startIndex + 5;
+  const displayedData = searchHints?.slice(startIndex, endIndex);
   return (
-    <>
-      <div className="container m-auto text-lg">
+    <div className="bg-[#fff] rounded-xl p-10">
+      <div className="grid text-lg">
         <div className="text-center divide-y-2">
           <div className="font-normal text-2xl p-4">Legal Search</div>
           <div className="text-left py-4">
             Please ask a question below below and get the result in real-time.
             Important phrases are denoted in{" "}
-            <span className=" font-bold">boldface</span>
+            <span className="font-bold">boldface</span>
           </div>
         </div>
         <div className="flex pt-4">
@@ -125,7 +140,7 @@ const Search = () => {
         </div>
         <div className="flex justify-between items-center py-2">
           <div className="text-slate-400">
-            {search && searchHints.length ? searchHints.length : 0} Result
+            {search && searchHints.length ? displayedData?.length : 0} Result
           </div>
           <CustomSelect
             options={allSources}
@@ -134,10 +149,10 @@ const Search = () => {
           />
         </div>
         <div>{loading && search && "Loading..."}</div>
-        <div className="block text-lg">
+        <div className="block text-lg overflow-y-auto max-h-[1000px]">
           {!loading &&
             search &&
-            searchHints.map((item: any, index: number) => (
+            displayedData?.map((item: any, index: number) => (
               <div
                 key={index}
                 className="w-full flex flex-col p-4 border-[1px] border-slate-400 hover:bg-blue-200"
@@ -149,8 +164,28 @@ const Search = () => {
               </div>
             ))}
         </div>
+        {!loading && search && searchHints?.length && (
+          <div className="flex gap-4 mt-5">
+            <Button
+              onClick={prevPage}
+              disabled={currentPage === 0}
+              variant="contained"
+              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[15%]"
+            >
+              Prev
+            </Button>
+            <Button
+              onClick={nextPage}
+              disabled={currentPage === totalPages - 1}
+              variant="contained"
+              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[15%]"
+            >
+              Next
+            </Button>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
