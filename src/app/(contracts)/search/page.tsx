@@ -92,10 +92,10 @@ const Search = () => {
     <>
       <div className="container m-auto text-lg">
         <div className="text-center divide-y-2">
-          <div className="font-normal text-2xl p-4">Wiki Search</div>
+          <div className="font-normal text-2xl p-4">Legal Search</div>
           <div className="text-left py-4">
-            You can type in any natural language question below and get the
-            result in real-time. Important phase are denoted in{" "}
+            Please ask a question below below and get the result in real-time.
+            Important phrases are denoted in{" "}
             <span className=" font-bold">boldface</span>
           </div>
         </div>
