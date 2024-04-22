@@ -5,7 +5,7 @@ import CustomSelect from "@/components/common/MultiSelect";
 import Icons from "@/components/common/Icons";
 
 const allSources = ["Wikipedia", "Bing", "Ecosia"];
-const DEBOUNCE_THRESHOLD = 3000;
+const DEBOUNCE_THRESHOLD = 1000;
 
 const Search = () => {
   const timeoutHandler = useRef<any>(null);
