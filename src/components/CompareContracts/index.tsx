@@ -98,14 +98,21 @@ const CompareContracts = ({
           <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
-      {data?.html ? (
+      {!loading && data?.html ? (
         <div dangerouslySetInnerHTML={{ __html: data?.html }}></div>
-      ) : !loading && !error ? (
-        <div className="font-light">
-          Please add some files to summarize data
+      ) : !loading && !error && data?.comparisons?.length ? (
+        <div className="text-lg text-red-500">
+          Something went wrong, please try again
         </div>
-      ) : null}
-      {data?.comparisons?.length && !loading ? (
+      ) : (
+        !loading &&
+        !error && (
+          <div className="font-light">
+            Please add some files to summarize data
+          </div>
+        )
+      )}
+      {data?.html && !loading ? (
         <Button
           component="label"
           variant="contained"

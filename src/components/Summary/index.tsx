@@ -164,13 +164,7 @@ const Summary = ({
                       </span>
                     </div>
 
-                    <div
-                      className={`font-semibold p-2.5 ${
-                        e?.result !== "contradicted"
-                          ? "bg-[#e8f5e9]"
-                          : "bg-[#f2dede]"
-                      }`}
-                    >
+                    <div className={`font-semibold p-2.5`}>
                       Result :
                       <span className="ml-1 font-light">{e?.result}</span>
                     </div>
@@ -179,27 +173,37 @@ const Summary = ({
                         key={i + warning}
                         className="flex flex-col gap-2"
                       >
-                        <div className="font-semibold bg-[#d9edf7] p-2.5">
+                        <div className="font-semibold p-2.5">
                           Clause :
                           <span className="ml-1 font-light">
                             {warning?.clause}
                           </span>
                         </div>
-                        <div className="font-semibold bg-[#fcf8e3] p-2.5">
+                        <div
+                          className={`font-semibold  ${
+                            warning?.differences ? "bg-[#fcf8e3]" : ""
+                          } p-2.5`}
+                        >
                           Differences :
                           <span className="ml-1 font-light">
-                            {warning?.differences}
+                            {warning?.differences
+                              ? warning?.differences
+                              : "N/A"}
                           </span>
                         </div>
-                        <div className="font-semibold bg-[#f2dede] p-2.5">
+                        <div
+                          className={`font-semibold ${
+                            warning?.risks ? "bg-[#f2dede]" : ""
+                          } p-2.5`}
+                        >
                           <div>
                             Risks :
                             <span className="ml-1 font-light">
-                              {warning?.risks}
+                              {warning?.risks ? warning?.risks : "N/A"}
                             </span>
                           </div>
                         </div>
-                        <div className="font-semibold bg-[#fcf8e3] p-2.5">
+                        <div className="font-semibold p-2.5">
                           <div>
                             Redline :
                             <span className="ml-1 font-light">
@@ -216,11 +220,17 @@ const Summary = ({
                             </span>
                           </div>
                         </div>
-                        <div className="font-semibold bg-[#e8f5e9] p-2.5">
+                        <div
+                          className={`font-semibold ${
+                            warning?.revisedClause ? "bg-[#e8f5e9]" : ""
+                          } p-2.5`}
+                        >
                           <div>
                             Revised Clause :
                             <span className="ml-1 font-light">
-                              {warning?.revisedClause}
+                              {warning?.revisedClause
+                                ? warning?.revisedClause
+                                : "N/A"}
                             </span>
                           </div>
                         </div>

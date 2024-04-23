@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import CustomSelect from "@/components/common/MultiSelect";
 import Icons from "@/components/common/Icons";
 import { Button } from "@/components/common/Button";
+import { CircularProgress } from "@mui/material";
 
 const allSources = ["Wikipedia", "Bing", "Ecosia"];
 const DEBOUNCE_THRESHOLD = 1000;
@@ -11,6 +12,7 @@ const DEBOUNCE_THRESHOLD = 1000;
 const Search = () => {
   const timeoutHandler = useRef<any>(null);
   const [search, setSearch] = useState<string>("");
+  const [searchResult, setSearchResult] = useState<any>("");
   const [searchHints, setSearchHints] = useState<any[]>([]);
   const [sources, setSources] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -45,6 +47,7 @@ const Search = () => {
 
       const result = await response.json();
       const modifiedHints = modifyData(result?.ret ?? []);
+      setSearchResult(result);
       setSearchHints(modifiedHints);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -148,7 +151,17 @@ const Search = () => {
             handleSelect={handleSource}
           />
         </div>
-        <div>{loading && search && "Loading..."}</div>
+        {loading && search && (
+          <div className="grid place-content-center">
+            <CircularProgress sx={{ color: "#00D3AF" }} />
+          </div>
+        )}
+        {!loading && search && (
+          <p
+            className="mb-2"
+            dangerouslySetInnerHTML={{ __html: searchResult?.html }}
+          ></p>
+        )}
         <div className="block text-lg overflow-y-auto max-h-[1000px]">
           {!loading &&
             search &&
@@ -157,9 +170,9 @@ const Search = () => {
                 key={index}
                 className="w-full flex flex-col p-4 border-[1px] border-slate-400 hover:bg-blue-200"
               >
-                <div>{item.title}</div>
+                <div>{item?.title}</div>
                 <p>
-                  <span dangerouslySetInnerHTML={{ __html: item.context }} />
+                  <span dangerouslySetInnerHTML={{ __html: item?.context }} />
                 </p>
               </div>
             ))}

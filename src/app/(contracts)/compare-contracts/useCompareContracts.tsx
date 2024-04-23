@@ -26,10 +26,8 @@ export const useCompareContracts = () => {
   };
 
   const deleteFilesHandler = (fileName: string) => {
-    const deletedFileIndex = uploadedFiles?.findIndex(
-      (e) => e?.name === fileName
-    );
-    uploadedFiles?.splice(0, deletedFileIndex);
+    const updatedFiles = uploadedFiles?.filter((e) => e?.name !== fileName);
+    setUploadFiles(updatedFiles);
   };
 
   const comparisonHandler = async () => {
