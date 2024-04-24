@@ -4,9 +4,17 @@ import React, { useRef, useState } from "react";
 import CustomSelect from "@/components/common/MultiSelect";
 import Icons from "@/components/common/Icons";
 import { Button } from "@/components/common/Button";
-import { CircularProgress } from "@mui/material";
+import {
+  CircularProgress,
+  FormControl,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { LIST_SAMPLE_QUESTIONS } from "./constant";
+import { isLink } from "../../../../public/utils/checkURL";
 
-const allSources = ["Wikipedia", "Bing", "Ecosia"];
+const allSources = ["uscode", "doj_guidance", "us_bills"];
 const DEBOUNCE_THRESHOLD = 1000;
 
 const Search = () => {
@@ -17,7 +25,7 @@ const Search = () => {
   const [sources, setSources] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleChange = (e: React.BaseSyntheticEvent) => {
+  const handleChange = (e: React.BaseSyntheticEvent | SelectChangeEvent) => {
     const value = e.target.value;
     setSearch(value);
     setLoading(true);
@@ -117,7 +125,26 @@ const Search = () => {
             <span className="font-bold">boldface</span>
           </div>
         </div>
-        <div className="flex pt-4">
+        <div className="grid grid-cols-[0.2fr_1fr_55px] pt-4">
+          <FormControl size="small">
+            <Select
+              value={""}
+              onChange={handleChange}
+              displayEmpty
+              inputProps={{ "aria-label": "Without label" }}
+            >
+              <MenuItem value="">Examples</MenuItem>
+              {LIST_SAMPLE_QUESTIONS?.map((item) => (
+                <MenuItem
+                  value={item}
+                  className="text-wrap"
+                  key={item}
+                >
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <input
             value={search}
             onChange={handleChange}
@@ -170,7 +197,17 @@ const Search = () => {
                 key={index}
                 className="w-full flex flex-col p-4 border-[1px] border-slate-400 hover:bg-blue-200"
               >
-                <div>{item?.title}</div>
+                {isLink(item?.title) ? (
+                  <a
+                    className="font-semibold"
+                    href={item?.title}
+                    target="_blank"
+                  >
+                    {item?.title}
+                  </a>
+                ) : (
+                  <div className="font-semibold">{item?.title}</div>
+                )}
                 <p>
                   <span dangerouslySetInnerHTML={{ __html: item?.context }} />
                 </p>

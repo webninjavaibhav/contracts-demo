@@ -8,3 +8,7 @@ body {
   overflow-x: hidden;
   margin: 0;
 }
+.MuiPaper-root {
+  left: 9.5vw !important;
+  right: 5.5vw !important;
+}
