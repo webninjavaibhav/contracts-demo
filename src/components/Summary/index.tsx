@@ -4,99 +4,19 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "../common/Button";
 import Icons from "../common/Icons";
 
-async function generatePDF(currentPolicies: any, currentDocumentName: string) {
-  const htmlContentData = `<style>html { -webkit-print-color-adjust: exact;}</style><div style="line-height:1.5; font-size:14.5px;">
-  <div style="font-size: 2rem;">Summarized Result</div>
-  ${currentPolicies
-    ?.map(
-      (e: any, index: number) =>
-        `<div
-        key=${"policy-" + index}
-        style="margin-bottom: 1.25rem;"
-      >
-        <div style="display: flex; flex-direction: column; gap: 0.75rem; background-color: #eef; padding: 1.25rem; border-radius: 8px; margin-bottom: 20px;">
-          <div style="display: flex; justify-content: space-between; gap: 0.5rem;">
-            <div style="font-weight: bold; padding: 0.625rem;">
-              Compliance ${index + 1} / ${currentPolicies?.length} :
-              <span style="margin-left: 0.25rem; font-weight: 100;">
-                ${e?.policy}
-              </span>
-            </div>
-          </div>
-          <div
-            style='background-color: ${
-              e?.result === "contradicted" ? "#e8f5e9" : "#f2dede"
-            }; font-weight: bold; padding: 0.625rem;'
-          >
-            Result :
-            <span style="margin-left: 0.25rem; font-weight: 100;">
-              ${e?.result}
-            </span>
-          </div>
-          ${e?.warnings?.map(
-            (warning: any, i: number) =>
-              `<div
-              key=${"warning-" + i}
-              style="display: flex; flex-direction: column; gap: 0.5rem;"
-            >
-              <div style="font-weight: bold; background-color: #d9edf7; padding: 0.625rem;">
-                Clause :
-                <span style="margin-left: 0.25rem; font-weight: 100;">
-                  ${warning?.clause}
-                </span>
-              </div>
-              <div style="font-weight: bold; background-color: #fcf8e3; padding: 0.625rem;">
-                Differences :
-                <span style="margin-left: 0.25rem; font-weight: 100;">
-                  ${warning?.differences}
-                </span>
-              </div>
-              <div style="font-weight: bold; background-color: #f2dede; padding: 0.625rem;">
-                Risks :
-                <span style="margin-left: 0.25rem; font-weight: 100;">
-                  ${warning?.risks}
-                </span>
-              </div>
-              <div style="font-weight: bold; background-color: #fcf8e3; padding: 0.625rem;">
-                Redline :
-                <span style="margin-left: 0.25rem; font-weight: 100;">
-                  ${
-                    warning?.redLine
-                      ? warning?.redLine
-                      : `<span style="margin-left: 0.375rem;">N/A</span>`
-                  }
-                </span>
-              </div>
-              <div style="font-weight: bold; background-color: #e8f5e9; padding: 0.625rem;">
-                Revised Clause :
-                <span style="margin-left: 0.25rem; font-weight: 100;">
-                  ${warning?.revisedClause}
-                </span>
-              </div>
-            </div>`
-          )}
-        </div>
-      </div>`
-    )
-    .join("</br>")}
-</div>
-`;
-
-  if (typeof document === "undefined") return;
-  try {
-    const response = await fetch("api/generated-pdf", {
-      method: "POST",
-      body: JSON.stringify(`${htmlContentData}`),
-    });
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${currentDocumentName}.pdf`;
-    a.click();
-    a.remove();
-  } catch (err) {
-    console.log(err);
+async function generatePDF() {
+  const invoice = document.getElementById("pdf-container");
+  console.log(invoice);
+  console.log(window);
+  var opt = {
+    margin: 1,
+    filename: "myfile.pdf",
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "cm", format: "letter", orientation: "portrait" },
+  };
+  if (window && (window as any)?.html2pdf) {
+    (window as any)?.html2pdf().from(invoice).set(opt).save();
   }
 }
 
@@ -252,7 +172,7 @@ const Summary = ({
           component="label"
           variant="contained"
           className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
-          onClick={() => generatePDF(currentPolicies, currentDocumentName)}
+          onClick={generatePDF}
           disabled={loading}
         >
           Download PDF
