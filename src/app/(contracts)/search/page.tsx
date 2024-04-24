@@ -116,15 +116,48 @@ const Search = () => {
   const displayedData = searchHints?.slice(startIndex, endIndex);
   return (
     <div className="bg-[#fff] rounded-xl p-10">
-      <div className="grid text-lg">
-        <div className="text-center divide-y-2">
-          <div className="font-normal text-2xl p-4">Legal Search</div>
+      <div className="grid">
+        <div className="divide-y-2">
+          <div className="text-center font-normal text-2xl p-4">
+            Legal Search
+          </div>
+          <div className="flex flex-col gap-4 py-3">
+            The following document bases can be searched in this application
+            <div>
+              <span className="italic">US Bills</span> : us_bills corpus
+              contains a collection of bills introduced in the United States,
+              representing legislative proposals put forward by members of
+              Congress. This corpus serves as a comprehensive repository of
+              legislative documents, offering valuable insights into the
+              legislative process and policy priorities of the U.S. government.
+            </div>
+            <div>
+              <span className="italic">The United States Code(Laws)</span> :
+              us_code corpus is a comprehensive collection of federal laws
+              enacted by the United States Congress. It serves as the official
+              compilation and codification of the general and permanent laws of
+              the United States, covering a wide range of topics including civil
+              rights, criminal justice, taxation, commerce, immigration, and
+              national security.
+            </div>
+            <div>
+              <span className="italic">
+                Guidance documents from the U.S. Department of Justice
+              </span>{" "}
+              : doj_guidance corpus is a collection of official guidance
+              documents issued by the United States Department of Justice (DOJ)
+              during the period from 2020 to 2022. These documents provide
+              interpretive guidance, policy statements, and legal opinions on
+              various matters within the jurisdiction of the DOJ
+            </div>
+          </div>
           <div className="text-left py-4">
             Please ask a question below below and get the result in real-time.
             Important phrases are denoted in{" "}
             <span className="font-bold">boldface</span>
           </div>
         </div>
+
         <div className="grid grid-cols-[0.2fr_1fr_55px] pt-4">
           <FormControl size="small">
             <Select
