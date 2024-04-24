@@ -5,8 +5,6 @@ import Icons from "../common/Icons";
 
 async function generatePDF() {
   const invoice = document.getElementById("pdf-container");
-  console.log(invoice);
-  console.log(window);
   var opt = {
     margin: 1,
     filename: "myfile.pdf",
