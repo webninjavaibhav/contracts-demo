@@ -1,5 +1,4 @@
 import Tabs from "../common/Tabs";
-import { Divider } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "../common/Button";
 import Icons from "../common/Icons";
@@ -101,7 +100,10 @@ const Summary = ({
                         </div>
                         <div
                           className={`font-semibold  ${
-                            warning?.differences ? "bg-[#fcf8e3]" : ""
+                            warning?.differences &&
+                            warning?.differences !== "N/A"
+                              ? "bg-[#fcf8e3]"
+                              : ""
                           } p-2.5`}
                         >
                           Differences :
@@ -113,7 +115,9 @@ const Summary = ({
                         </div>
                         <div
                           className={`font-semibold ${
-                            warning?.risks ? "bg-[#f2dede]" : ""
+                            warning?.risks && warning?.risks !== "N/A"
+                              ? "bg-[#f2dede]"
+                              : ""
                           } p-2.5`}
                         >
                           <div>
@@ -142,7 +146,10 @@ const Summary = ({
                         </div>
                         <div
                           className={`font-semibold ${
-                            warning?.revisedClause ? "bg-[#e8f5e9]" : ""
+                            warning?.revisedClause &&
+                            warning?.revisedClause !== "N/A"
+                              ? "bg-[#e8f5e9]"
+                              : ""
                           } p-2.5`}
                         >
                           <div>
