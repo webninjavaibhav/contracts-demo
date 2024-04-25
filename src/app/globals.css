@@ -17,7 +17,9 @@ img {
   -ms-interpolation-mode: bicubic;
 }
 
-.MuiPaper-root {
-  left: 9.5vw !important;
-  right: 5.5vw !important;
+.MuiTabs-indicator {
+  background-color: #00d3af;
+}
+.MuiTab-root {
+  color: #00d3af !important;
 }

@@ -59,16 +59,16 @@ const Navigation = () => {
       route: "/flow-manager",
       icon: <Icons.flowManagerIcon fontSize="small" />,
     },
-    {
-      name: "Designer",
-      route: "/designer",
-      icon: <Icons.designerIcon fontSize="small" />,
-    },
-    {
-      name: "Integrations",
-      route: "/integrations",
-      icon: <Icons.integrationIcon fontSize="small" />,
-    },
+    // {
+    //   name: "Designer",
+    //   route: "/designer",
+    //   icon: <Icons.designerIcon fontSize="small" />,
+    // },
+    // {
+    //   name: "Integrations",
+    //   route: "/integrations",
+    //   icon: <Icons.integrationIcon fontSize="small" />,
+    // },
     {
       name: "Insights Logs",
       route: "/insights-logs",

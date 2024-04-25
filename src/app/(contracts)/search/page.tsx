@@ -17,6 +17,23 @@ import { isLink } from "../../../../public/utils/checkURL";
 const allSources = ["uscode", "doj_guidance", "us_bills"];
 const DEBOUNCE_THRESHOLD = 1000;
 
+const MenuProps: any = {
+  anchorOrigin: {
+    vertical: "bottom",
+    horizontal: "bottom",
+  },
+  transformOrigin: {
+    vertical: "top",
+    horizontal: "top",
+  },
+  getContentAnchorEl: null,
+  PaperProps: {
+    style: {
+      width: "fit-content",
+    },
+  },
+};
+
 const Search = () => {
   const timeoutHandler = useRef<any>(null);
   const [search, setSearch] = useState<string>("");
@@ -118,10 +135,8 @@ const Search = () => {
     <div className="bg-[#fff] rounded-xl p-10">
       <div className="grid">
         <div className="divide-y-2">
-          <div className="text-center font-normal text-2xl p-4">
-            Legal Search
-          </div>
-          <div className="flex flex-col gap-4 py-3">
+          <div className="text-center font-bold text-2xl p-4">Legal Search</div>
+          <div className="text-[13px] flex flex-col gap-4 py-3 text-[#6e6eea]">
             The following document bases can be searched in this application
             <div>
               <span className="italic">US Bills</span> : us_bills corpus
@@ -165,6 +180,7 @@ const Search = () => {
               onChange={handleChange}
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
+              MenuProps={MenuProps}
             >
               <MenuItem value="">Examples</MenuItem>
               {LIST_SAMPLE_QUESTIONS?.map((item) => (
