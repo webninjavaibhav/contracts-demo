@@ -230,7 +230,7 @@ const Search = () => {
           />
         </div>
         {loading && search && (
-          <div className="grid place-content-center">
+          <div className="grid place-content-center min-h-[70vh]">
             <CircularProgress sx={{ color: "#00D3AF" }} />
           </div>
         )}

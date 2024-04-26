@@ -52,136 +52,140 @@ const Summary = ({
           <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
-      <div id="pdf-container">
-        {tabs?.length && currentPolicies && !loading ? (
-          currentPolicies?.map((e: any, index: number) => {
-            return (
-              <>
-                <div
-                  key={index + e}
-                  className="mb-5"
-                >
-                  <div className="flex flex-col gap-3 bg-[#eef] p-5 rounded-[8px] mb-[20px]">
-                    <div className="flex justify-between gap-2">
-                      <div className="font-semibold p-2.5">
-                        Compliance {index + 1} / {currentPolicies?.length} :
-                        <span className="ml-1 font-light">{e?.policy}</span>
+      <div className="max-h-[730px] overflow-auto">
+        <div id="pdf-container">
+          {tabs?.length && currentPolicies && !loading ? (
+            currentPolicies?.map((e: any, index: number) => {
+              return (
+                <>
+                  <div
+                    key={index + e}
+                    className="mb-5"
+                  >
+                    <div className="flex flex-col gap-3 bg-[#eef] p-5 rounded-[8px] mb-[20px]">
+                      <div className="flex justify-between gap-2">
+                        <div className="font-semibold p-2.5">
+                          Compliance {index + 1} / {currentPolicies?.length} :
+                          <span className="ml-1 font-light">{e?.policy}</span>
+                        </div>
+                        <span className="items-center ml-2">
+                          <Icons.flagIcon
+                            sx={{
+                              color:
+                                e?.result === "contradicted" ? "red" : "white",
+                              fontSize: 25,
+                              marginBottom: 0.8,
+                            }}
+                          />
+                        </span>
                       </div>
-                      <span className="items-center ml-2">
-                        <Icons.flagIcon
-                          sx={{
-                            color:
-                              e?.result === "contradicted" ? "red" : "white",
-                            fontSize: 25,
-                            marginBottom: 0.8,
-                          }}
-                        />
-                      </span>
-                    </div>
 
-                    <div className={`font-semibold p-2.5`}>
-                      Result :
-                      <span className="ml-1 font-light">{e?.result}</span>
-                    </div>
-                    {e?.warnings?.map((warning: any, i: number) => (
-                      <div
-                        key={i + warning}
-                        className="flex flex-col gap-2"
-                      >
-                        <div className="font-semibold p-2.5">
-                          Clause :
-                          <span className="ml-1 font-light">
-                            {warning?.clause}
-                          </span>
-                        </div>
+                      <div className={`font-semibold p-2.5`}>
+                        Result :
+                        <span className="ml-1 font-light">{e?.result}</span>
+                      </div>
+                      {e?.warnings?.map((warning: any, i: number) => (
                         <div
-                          className={`font-semibold  ${
-                            warning?.differences &&
-                            warning?.differences !== "N/A"
-                              ? "bg-[#fcf8e3]"
-                              : ""
-                          } p-2.5`}
+                          key={i + warning}
+                          className="flex flex-col gap-2"
                         >
-                          Differences :
-                          <span className="ml-1 font-light">
-                            {warning?.differences
-                              ? warning?.differences
-                              : "N/A"}
-                          </span>
-                        </div>
-                        <div
-                          className={`font-semibold ${
-                            warning?.risks && warning?.risks !== "N/A"
-                              ? "bg-[#f2dede]"
-                              : ""
-                          } p-2.5`}
-                        >
-                          <div>
-                            Risks :
+                          <div className="font-semibold p-2.5">
+                            Clause :
                             <span className="ml-1 font-light">
-                              {warning?.risks ? warning?.risks : "N/A"}
+                              {warning?.clause}
                             </span>
                           </div>
-                        </div>
-                        <div className="font-semibold p-2.5">
-                          <div>
-                            Redline :
+                          <div
+                            className={`font-semibold  ${
+                              warning?.differences &&
+                              warning?.differences !== "N/A"
+                                ? "bg-[#fcf8e3]"
+                                : ""
+                            } p-2.5`}
+                          >
+                            Differences :
                             <span className="ml-1 font-light">
-                              {warning?.redLine ? (
-                                <span
-                                  className="ml-1 font-light"
-                                  dangerouslySetInnerHTML={{
-                                    __html: warning?.redLine,
-                                  }}
-                                ></span>
-                              ) : (
-                                <span className="ml-3">N/A</span>
-                              )}
-                            </span>
-                          </div>
-                        </div>
-                        <div
-                          className={`font-semibold ${
-                            warning?.revisedClause &&
-                            warning?.revisedClause !== "N/A"
-                              ? "bg-[#e8f5e9]"
-                              : ""
-                          } p-2.5`}
-                        >
-                          <div>
-                            Revised Clause :
-                            <span className="ml-1 font-light">
-                              {warning?.revisedClause
-                                ? warning?.revisedClause
+                              {warning?.differences
+                                ? warning?.differences
                                 : "N/A"}
                             </span>
                           </div>
+                          <div
+                            className={`font-semibold ${
+                              warning?.risks && warning?.risks !== "N/A"
+                                ? "bg-[#f2dede]"
+                                : ""
+                            } p-2.5`}
+                          >
+                            <div>
+                              Risks :
+                              <span className="ml-1 font-light">
+                                {warning?.risks ? warning?.risks : "N/A"}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="font-semibold p-2.5">
+                            <div>
+                              Redline :
+                              <span className="ml-1 font-light">
+                                {warning?.redLine ? (
+                                  <span
+                                    className="ml-1 font-light"
+                                    dangerouslySetInnerHTML={{
+                                      __html: warning?.redLine,
+                                    }}
+                                  ></span>
+                                ) : (
+                                  <span className="ml-3">N/A</span>
+                                )}
+                              </span>
+                            </div>
+                          </div>
+                          <div
+                            className={`font-semibold ${
+                              warning?.revisedClause &&
+                              warning?.revisedClause !== "N/A"
+                                ? "bg-[#e8f5e9]"
+                                : ""
+                            } p-2.5`}
+                          >
+                            <div>
+                              Revised Clause :
+                              <span className="ml-1 font-light">
+                                {warning?.revisedClause
+                                  ? warning?.revisedClause
+                                  : "N/A"}
+                              </span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </>
-            );
-          })
-        ) : !loading && !error ? (
-          <div className="text-xl text-[#a5a5ac] grid place-content-center min-h-[70vh] font-light">
-            Search Result
+                </>
+              );
+            })
+          ) : !loading && !error ? (
+            <div className="text-xl text-[#a5a5ac] grid place-content-center min-h-[70vh] font-light">
+              Search Result
+            </div>
+          ) : null}
+        </div>
+        {tabs?.length && currentPolicies && !loading ? (
+          <div className="flex gap-4 mt-5 py-5 m-0 sticky bottom-[-20px] bg-[#fff]">
+            <Button
+              component="label"
+              variant="contained"
+              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
+              onClick={() => generatePDF(currentDocumentName)}
+              disabled={loading}
+            >
+              Download PDF
+            </Button>
           </div>
         ) : null}
+        {error ? <div className="text-red-500 text-xl">{error}</div> : null}
       </div>
-      {tabs?.length && currentPolicies && !loading ? (
-        <Button
-          component="label"
-          variant="contained"
-          className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
-          onClick={() => generatePDF(currentDocumentName)}
-          disabled={loading}
-        >
-          Download PDF
-        </Button>
-      ) : null}
-      {error ? <div className="text-red-500 text-xl">{error}</div> : null}
     </div>
   );
 };

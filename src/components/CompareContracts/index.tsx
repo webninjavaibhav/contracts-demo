@@ -35,7 +35,7 @@ const CompareContracts = ({
           <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
-      <div className="max-h-[750px] overflow-auto">
+      <div className="max-h-[730px] overflow-auto">
         <div id="compare-contract-container">
           {!loading && data?.html ? (
             <div dangerouslySetInnerHTML={{ __html: data?.html }}></div>
@@ -55,15 +55,17 @@ const CompareContracts = ({
       </div>
 
       {data?.html && !loading ? (
-        <Button
-          component="label"
-          variant="contained"
-          className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
-          onClick={generatePDF}
-          disabled={loading}
-        >
-          Download PDF
-        </Button>
+        <div className="flex gap-4 mt-5 sticky bottom-[-20px] bg-[#fff]">
+          <Button
+            component="label"
+            variant="contained"
+            className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
+            onClick={generatePDF}
+            disabled={loading}
+          >
+            Download PDF
+          </Button>
+        </div>
       ) : null}
       {error ? <div className="text-red-500 text-xl">{error}</div> : null}
     </div>
