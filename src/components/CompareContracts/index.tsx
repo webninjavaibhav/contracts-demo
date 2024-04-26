@@ -3,10 +3,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "../common/Button";
 
 async function generatePDF() {
-  const invoice = document.getElementById("compare-version-container");
+  const invoice = document.getElementById("compare-contract-container");
   var opt = {
     margin: 1,
-    filename: "myfile.pdf",
+    filename: "comparison.pdf",
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: "cm", format: "letter", orientation: "portrait" },
@@ -28,28 +28,30 @@ const CompareContracts = ({
   compareFor: string;
 }) => {
   return (
-    <div className="flex flex-col gap-4 p-5">
+    <div className="flex flex-col gap-4 p-10">
       <div className="flex font-semibold text-2xl">Compared Result</div>
       {loading && (
-        <div className="flex items-center justify-center">
+        <div className="grid place-content-center min-h-[70vh]">
           <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
-      <div id="compare-version-container">
-        {!loading && data?.html ? (
-          <div dangerouslySetInnerHTML={{ __html: data?.html }}></div>
-        ) : !loading && !error && data?.comparisons?.length ? (
-          <div className="text-lg text-red-500">
-            Something went wrong, please try again
-          </div>
-        ) : (
-          !loading &&
-          !error && (
-            <div className="font-light">
-              Please add some files to summarize data
+      <div className="max-h-[750px] overflow-auto">
+        <div id="compare-contract-container">
+          {!loading && data?.html ? (
+            <div dangerouslySetInnerHTML={{ __html: data?.html }}></div>
+          ) : !loading && !error && data?.comparisons?.length ? (
+            <div className="text-lg text-red-500">
+              Something went wrong, please try again
             </div>
-          )
-        )}
+          ) : (
+            !loading &&
+            !error && (
+              <div className="text-xl text-[#a5a5ac] grid place-content-center min-h-[70vh] font-light">
+                Search Result
+              </div>
+            )
+          )}
+        </div>
       </div>
 
       {data?.html && !loading ? (

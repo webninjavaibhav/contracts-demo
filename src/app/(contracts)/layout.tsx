@@ -47,7 +47,7 @@ export default function ContractsLayout({
         }}
       />
       <Navigation />
-      <div className="flex flex-col w-full px-16 py-5 bg-[#DCE0E7] max-h-[100vh] overflow-auto">
+      <div className="flex flex-col w-full px-16 py-5 bg-[#DCE0E7] min-h-[100vh] max-h-[100vh] overflow-auto">
         {children}
       </div>
     </div>

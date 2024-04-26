@@ -131,12 +131,15 @@ const Search = () => {
   const startIndex = currentPage * 5;
   const endIndex = startIndex + 5;
   const displayedData = searchHints?.slice(startIndex, endIndex);
+
   return (
-    <div className="bg-[#fff] rounded-xl p-10">
+    <div className="bg-[#fff] rounded-xl p-5">
       <div className="grid">
         <div className="divide-y-2">
-          <div className="text-center font-bold text-2xl p-4">Legal Search</div>
-          <div className="text-[13px] flex flex-col gap-4 py-3 text-[#6e6eea]">
+          <div className="text-center font-bold text-2xl pb-2">
+            Legal Search
+          </div>
+          <div className="text-[13px] flex flex-col gap-4 py-3 text-[#6161f1]">
             The following document bases can be searched in this application
             <div>
               <span className="italic">US Bills</span> : us_bills corpus
@@ -166,14 +169,13 @@ const Search = () => {
               various matters within the jurisdiction of the DOJ
             </div>
           </div>
-          <div className="text-left py-4">
+          <div className="text-left py-3">
             Please ask a question below below and get the result in real-time.
             Important phrases are denoted in{" "}
             <span className="font-bold">boldface</span>
           </div>
         </div>
-
-        <div className="grid grid-cols-[0.2fr_1fr_55px] pt-4">
+        <div className="grid grid-cols-[0.2fr_1fr_55px] pt-2">
           <FormControl size="small">
             <Select
               value={""}
@@ -234,11 +236,11 @@ const Search = () => {
         )}
         {!loading && search && (
           <p
-            className="mb-2"
+            className="bg-[#eef] p-1 my-4"
             dangerouslySetInnerHTML={{ __html: searchResult?.html }}
           ></p>
         )}
-        <div className="block text-lg overflow-y-auto max-h-[1000px]">
+        <div className="block text-lg">
           {!loading &&
             search &&
             displayedData?.map((item: any, index: number) => (
@@ -263,8 +265,8 @@ const Search = () => {
               </div>
             ))}
         </div>
-        {!loading && search && searchHints?.length && (
-          <div className="flex gap-4 mt-5">
+        {!loading && search && displayedData?.length ? (
+          <div className="flex gap-4 mt-5 py-5 m-0 sticky bottom-[-20px] bg-[#fff]">
             <Button
               onClick={prevPage}
               disabled={currentPage === 0}
@@ -282,7 +284,7 @@ const Search = () => {
               Next
             </Button>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

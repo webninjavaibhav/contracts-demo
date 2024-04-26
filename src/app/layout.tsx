@@ -5,7 +5,9 @@ import ContextWrapper from "@/components/ContextWrapper";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

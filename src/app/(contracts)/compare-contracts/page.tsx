@@ -21,7 +21,7 @@ const ContractComparison = () => {
   } = useCompareContracts();
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="grid gap-2 h-[100%] grid-cols-[0.8fr_1fr]">
       <UploadedFiles
         title="Contract Comparison"
         uploadedFiles={uploadedFiles}
@@ -33,7 +33,7 @@ const ContractComparison = () => {
         onDelete={deleteFilesHandler}
         loading={loading}
       />
-      <div className="bg-[#fff] rounded-xl min-h-[600px]">
+      <div className="bg-[#fff] rounded-xl">
         <CompareContracts
           loading={loading}
           error={error}

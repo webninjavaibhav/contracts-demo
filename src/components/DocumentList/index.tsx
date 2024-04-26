@@ -1,4 +1,6 @@
 import Icons from "../common/Icons";
+import GroupIcon from "../../../public/images/Group.png";
+import Image from "next/image";
 
 const DocumentList = ({
   uploadedFiles,
@@ -19,32 +21,36 @@ const DocumentList = ({
   }
 
   return (
-    <div className="flex flex-col justify-start p-2">
+    <div className="flex flex-col justify-start p-2 min-h-[450px]">
+      <div className="flex font-medium gap-3 items-center text-xl">
+        Attached Files
+        <Image
+          src={GroupIcon}
+          alt="group-icon"
+          width={20}
+          height={20}
+        />
+      </div>
       {uploadedFiles?.length ? (
-        <div className="flex flex-col gap-3 mt-4 max-h-[400px] overflow-auto">
+        <div className="flex flex-col gap-3 mt-1 max-h-[400px] overflow-auto">
           {uploadedFiles?.map((data: any, index: number) => (
             <div
-              className="flex gap-5 items-center text-xl p-2"
+              className="flex gap-5 items-center text-sm"
               key={index}
             >
-              <div>
-                {data?.name?.includes("pdf") ? (
-                  <Icons.pdfIcon sx={{ color: "red", fontSize: 50 }} />
-                ) : data?.name?.includes("doc") ? (
-                  <Icons.docIcon sx={{ color: "blue", fontSize: 50 }} />
-                ) : (
-                  <Icons.textIcon sx={{ fontSize: 50 }} />
-                )}
-              </div>
-              <div className="grid grid-cols-[1fr_auto] w-full">
+              <div className="grid grid-cols-[1fr_auto] w-full border border-[#D4D4D7] rounded-lg p-3">
                 <div>
-                  <div className="font-semibold">{data?.name}</div>
-                  <div className="text-sm">{formatFileSize(data?.size)}</div>
+                  <div className="text-sm font-medium">{data?.name}</div>
+                  <div className="flex items-center gap-1 text-[12px] text-[#5D5C6B]">
+                    {formatFileSize(data?.size)}
+                    <Icons.dotIcon sx={{ width: 5, height: 5 }} />
+                    <div className="text-[#00D3AF]">Completed</div>
+                  </div>
                 </div>
                 <Icons.crossIcon
                   sx={{
-                    color: "red",
-                    fontSize: 20,
+                    color: "#5D5C6B",
+                    fontSize: 16,
                     cursor: "pointer",
                     fontWeight: "bold",
                   }}
@@ -55,8 +61,8 @@ const DocumentList = ({
           ))}
         </div>
       ) : (
-        <div className="grid place-content-center h-full font-semibold text-xl">
-          No Documents Upload
+        <div className="grid place-content-center h-full font-medium text-sm">
+          No Files Uploaded
         </div>
       )}
     </div>

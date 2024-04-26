@@ -2,8 +2,8 @@ import * as React from "react";
 const UploadIcon = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={208.046}
-    height={237.699}
+    width={50.046}
+    height={80.699}
     viewBox="622.537 461.959 208.046 237.699"
     {...props}
   >

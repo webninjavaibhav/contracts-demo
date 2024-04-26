@@ -21,7 +21,7 @@ const VersionComparison = () => {
   } = useCompareVersions();
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="grid gap-2 h-[100%] grid-cols-[0.8fr_1fr]">
       <UploadedFiles
         title="Version Comparison"
         uploadedFiles={uploadedFiles}

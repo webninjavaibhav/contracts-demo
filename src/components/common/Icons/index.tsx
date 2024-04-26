@@ -7,9 +7,9 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import ArticleIcon from "@mui/icons-material/Article";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import CloseIcon from "@mui/icons-material/Close";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import DangerousIcon from "@mui/icons-material/Dangerous";
+import StopCircleOutlinedIcon from "@mui/icons-material/StopCircleOutlined";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import SensorsIcon from "@mui/icons-material/Sensors";
 import AirIcon from "@mui/icons-material/Air";
@@ -17,6 +17,10 @@ import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 import InsightsIcon from "@mui/icons-material/Insights";
 import SearchIcon from "@mui/icons-material/Search";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import SettingsIcon from "@mui/icons-material/Settings";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export default {
   analysisIcon: AnalyticsIcon,
@@ -28,9 +32,9 @@ export default {
   pdfIcon: PictureAsPdfIcon,
   docIcon: ArticleIcon,
   textIcon: StickyNote2Icon,
-  crossIcon: HighlightOffIcon,
+  crossIcon: CloseIcon,
   arrowUpIcon: ArrowUpwardIcon,
-  stopIcon: DangerousIcon,
+  stopIcon: StopCircleOutlinedIcon,
   peopleIcon: PeopleAltIcon,
   connectorIcon: SensorsIcon,
   flowManagerIcon: AirIcon,
@@ -38,4 +42,8 @@ export default {
   integrationIcon: IntegrationInstructionsIcon,
   insightIcon: InsightsIcon,
   searchIcon: SearchIcon,
+  dotIcon: FiberManualRecordIcon,
+  settingIcon: SettingsIcon,
+  customerIcon: SupportAgentIcon,
+  logoutIcon: LogoutIcon,
 };

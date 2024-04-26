@@ -22,7 +22,7 @@ const DropZone = (props: any) => {
     <>
       <div
         {...getRootProps()}
-        className="grid place-items-center place-content-center gap-8 border-dashed border-4 border-[#00D3AF] rounded-lg min-h-[550px] cursor-pointer"
+        className="grid place-items-center place-content-center border-dashed border-2 border-[#D4D4D7] rounded-lg min-h-[250px] cursor-pointer"
       >
         <Box
           className={{
@@ -31,10 +31,12 @@ const DropZone = (props: any) => {
         >
           <UploadIcon />
         </Box>
-        <div className="text-[26px] tracking-[1.5px] leading-10 text-center font-semibold">
-          Drop your files here
-          <br />
-          or <span className="text-[#00D3AF] text-center">Browse</span>
+        <div className="text-sm  text-center font-medium">
+          Drag and Drop your files here or{" "}
+          <span className="text-[#00D3AF] text-center">Upload</span>
+        </div>
+        <div className="text-sm  text-[#92929C] text-center font-medium">
+          PDF or Docx , maxiumum size 5MB
         </div>
       </div>
     </>

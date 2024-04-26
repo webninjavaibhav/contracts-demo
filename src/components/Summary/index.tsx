@@ -3,11 +3,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "../common/Button";
 import Icons from "../common/Icons";
 
-async function generatePDF() {
+async function generatePDF(currentDocumentName: string) {
   const invoice = document.getElementById("pdf-container");
   var opt = {
     margin: 1,
-    filename: "myfile.pdf",
+    filename: `${currentDocumentName}.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: "cm", format: "letter", orientation: "portrait" },
@@ -38,11 +38,9 @@ const Summary = ({
   const currentDocumentName = currentFile?.documentName;
 
   return (
-    <div className="flex flex-col gap-4 p-5">
-      <div className="flex font-semibold text-2xl">
-        Contract Summary Analysis
-      </div>
-      {tabs?.length ? (
+    <div className="flex flex-col gap-4 p-10">
+      <div className="flex font-semibold text-2xl">Summary Analysis</div>
+      {tabs?.length && !loading ? (
         <Tabs
           tabs={tabs}
           value={value}
@@ -50,7 +48,7 @@ const Summary = ({
         />
       ) : null}
       {loading && (
-        <div className="flex items-center justify-center">
+        <div className="grid place-content-center min-h-[70vh]">
           <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
@@ -167,8 +165,8 @@ const Summary = ({
             );
           })
         ) : !loading && !error ? (
-          <div className="font-light">
-            Please add some files to summarize data
+          <div className="text-xl text-[#a5a5ac] grid place-content-center min-h-[70vh] font-light">
+            Search Result
           </div>
         ) : null}
       </div>
@@ -177,7 +175,7 @@ const Summary = ({
           component="label"
           variant="contained"
           className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
-          onClick={generatePDF}
+          onClick={() => generatePDF(currentDocumentName)}
           disabled={loading}
         >
           Download PDF
