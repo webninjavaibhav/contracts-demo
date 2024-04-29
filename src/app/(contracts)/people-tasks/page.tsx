@@ -19,7 +19,7 @@ const PeopleTasks = () => {
   return (
     <div
       id="peopleTasks"
-      className="[&>div]:static"
+      className="appmixer-container"
     ></div>
   );
 };

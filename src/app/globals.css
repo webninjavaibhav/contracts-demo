@@ -33,6 +33,13 @@ img {
   color: #00d3af !important;
 }
 
+.appmixer-container > div:first-child {
+  left: 140px;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+}
+
 @media (max-height: 50rem) {
   .menu-list-item {
     height: 36px;

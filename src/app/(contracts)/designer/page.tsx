@@ -20,7 +20,7 @@ const Designer = () => {
   return (
     <div
       id="designer"
-      className="[&>div]:static"
+      className="appmixer-container"
     ></div>
   );
 };

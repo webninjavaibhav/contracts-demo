@@ -19,7 +19,7 @@ const InsightsLogs = () => {
   return (
     <div
       id="insightLogs"
-      className="[&>div]:static"
+      className="appmixer-container"
     ></div>
   );
 };

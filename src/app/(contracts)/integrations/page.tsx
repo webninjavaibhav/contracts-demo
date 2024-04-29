@@ -19,7 +19,7 @@ const Integrations = () => {
   return (
     <div
       id="integrations"
-      className="[&>div]:static"
+      className="appmixer-container"
     ></div>
   );
 };

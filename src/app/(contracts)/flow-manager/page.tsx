@@ -1,7 +1,6 @@
 "use client";
 
 import { Context } from "@/store/Context";
-import { Widgets } from "@mui/icons-material";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
 const FlowManager = () => {
@@ -53,10 +52,14 @@ const FlowManager = () => {
           { event: "flow:export-png", label: "Export PNG" },
           { event: "flow:print", label: "Print" },
         ],
+        toolbar: [
+          ["undo", "redo"],
+          ["zoom-to-fit", "zoom-in", "zoom-out"],
+          ["logs"],
+        ],
       },
     });
     if (flowId) {
-      console.log("flowId: " + flowId, designer);
       designer.set("flowId", flowId);
       designer.open();
     }
@@ -69,7 +72,7 @@ const FlowManager = () => {
   return (
     <div
       id="flowManager"
-      className="[&>div]:static"
+      className="appmixer-container"
     ></div>
   );
 };
