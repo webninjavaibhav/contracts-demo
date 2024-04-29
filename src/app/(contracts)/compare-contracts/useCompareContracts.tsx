@@ -46,7 +46,6 @@ export const useCompareContracts = () => {
       });
       const result = await response.json();
       setComparedResult(result?.data);
-      setPrompt("");
     } catch (error) {
       setError("Something went wrong, please try again");
     } finally {

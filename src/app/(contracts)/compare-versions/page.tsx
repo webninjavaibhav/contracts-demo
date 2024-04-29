@@ -21,7 +21,7 @@ const VersionComparison = () => {
   } = useCompareVersions();
 
   return (
-    <div className="grid gap-2 h-[100%] grid-cols-[0.8fr_1fr]">
+    <div className="grid h-[100%] grid-cols-[0.8fr_1fr]">
       <UploadedFiles
         title="Version Comparison"
         uploadedFiles={uploadedFiles}
@@ -31,7 +31,7 @@ const VersionComparison = () => {
         onDelete={deleteFilesHandler}
         loading={loading}
       />
-      <div className="bg-[#fff] rounded-xl min-h-[600px]">
+      <div className="bg-[#fff] rounded-r-lg min-h-[600px]">
         <CompareVersion
           loading={loading}
           error={error}

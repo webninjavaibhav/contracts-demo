@@ -27,20 +27,18 @@ const UploadedFiles = ({
   loading: boolean;
 }) => {
   return (
-    <div className="flex flex-col gap-6 bg-[#fff] p-10 rounded-xl">
+    <div className="grid grid-rows-[0.75fr_1fr_40px] gap-3 bg-[#fff] p-10 rounded-l-lg">
       <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-3">
-          <div className="flex font-medium text-3xl">{title}</div>
-          <DropZone
-            uploadedFiles={uploadedFiles}
-            onUploadFiles={onUploadFiles}
-          />
-        </div>
-        <DocumentList
+        <div className="flex font-medium text-3xl">{title}</div>
+        <DropZone
           uploadedFiles={uploadedFiles}
-          onDelete={onDelete}
+          onUploadFiles={onUploadFiles}
         />
       </div>
+      <DocumentList
+        uploadedFiles={uploadedFiles}
+        onDelete={onDelete}
+      />
       <div className="grid grid-cols-[1fr]">
         <div>
           {title !== "Version Comparison" ? (

@@ -29,7 +29,7 @@ export default function ContractsLayout({
   }, []);
 
   return (
-    <div className="grid grid-cols-[auto_1fr] w-full">
+    <>
       <Script
         src={`https://my.rabodis.appmixer.cloud/appmixer/appmixer.js`}
         onReady={() => {
@@ -46,10 +46,12 @@ export default function ContractsLayout({
             });
         }}
       />
-      <Navigation />
-      <div className="flex flex-col w-full px-16 py-5 bg-[#DCE0E7] min-h-[100vh] max-h-[100vh] overflow-auto">
-        {children}
+      <div className="flex gap-7 p-5 min-h-[inherit] max-h-[calc(100vh_-_40px)] bg-[#E7EAED]">
+        <Navigation />
+        <div className="flex flex-col w-full max-h-[100vh] overflow-auto">
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

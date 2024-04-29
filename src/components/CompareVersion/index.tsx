@@ -96,7 +96,7 @@ const CompareVersion = ({
           <Button
             component="label"
             variant="contained"
-            className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
+            className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[200px]"
             onClick={generatePDF}
             disabled={loading}
           >

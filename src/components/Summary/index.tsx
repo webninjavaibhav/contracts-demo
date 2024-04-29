@@ -48,11 +48,11 @@ const Summary = ({
         />
       ) : null}
       {loading && (
-        <div className="grid place-content-center min-h-[70vh]">
+        <div className="grid place-content-center min-h-[50vh]">
           <CircularProgress sx={{ color: "#00D3AF" }} />
         </div>
       )}
-      <div className="max-h-[730px] overflow-auto">
+      <div className="max-h-[calc(100vh_-_25vh)] overflow-auto pdf-container">
         <div id="pdf-container">
           {tabs?.length && currentPolicies && !loading ? (
             currentPolicies?.map((e: any, index: number) => {
@@ -176,7 +176,7 @@ const Summary = ({
             <Button
               component="label"
               variant="contained"
-              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[25%]"
+              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[200px]"
               onClick={() => generatePDF(currentDocumentName)}
               disabled={loading}
             >

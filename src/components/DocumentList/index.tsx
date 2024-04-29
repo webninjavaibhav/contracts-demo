@@ -21,7 +21,7 @@ const DocumentList = ({
   }
 
   return (
-    <div className="flex flex-col justify-start p-2 min-h-[450px]">
+    <div className="flex flex-col justify-start p-2">
       <div className="flex font-medium gap-3 items-center text-xl">
         Attached Files
         <Image
@@ -32,7 +32,7 @@ const DocumentList = ({
         />
       </div>
       {uploadedFiles?.length ? (
-        <div className="flex flex-col gap-3 mt-1 max-h-[400px] overflow-auto">
+        <div className="flex flex-col gap-3 mt-1 overflow-auto">
           {uploadedFiles?.map((data: any, index: number) => (
             <div
               className="flex gap-5 items-center text-sm"

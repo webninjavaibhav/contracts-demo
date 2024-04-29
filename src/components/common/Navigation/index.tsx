@@ -33,52 +33,52 @@ const Navigation = () => {
     {
       name: "Contract Analysis",
       route: "/contract-analysis",
-      icon: <Icons.analysisIcon fontSize="small" />,
+      icon: <Icons.analysisIcon fontSize="medium" />,
     },
     {
       name: "Contract Comparison",
       route: "/compare-contracts",
-      icon: <Icons.compareContracts fontSize="small" />,
+      icon: <Icons.compareContracts fontSize="medium" />,
     },
     {
       name: "Version Comparison",
       route: "/compare-versions",
-      icon: <Icons.compareVersions fontSize="small" />,
+      icon: <Icons.compareVersions fontSize="medium" />,
     },
     {
       name: "Legal Wiki",
       route: "/search",
-      icon: <Icons.searchIcon fontSize="small" />,
+      icon: <Icons.searchIcon fontSize="medium" />,
     },
     {
       name: "People Tasks",
       route: "/people-tasks",
-      icon: <Icons.peopleIcon fontSize="small" />,
+      icon: <Icons.peopleIcon fontSize="medium" />,
     },
     {
       name: "Connectors",
       route: "/connectors",
-      icon: <Icons.connectorIcon fontSize="small" />,
+      icon: <Icons.connectorIcon fontSize="medium" />,
     },
     {
       name: "Flow Manager",
       route: "/flow-manager",
-      icon: <Icons.flowManagerIcon fontSize="small" />,
+      icon: <Icons.flowManagerIcon fontSize="medium" />,
     },
     // {
     //   name: "Designer",
     //   route: "/designer",
-    //   icon: <Icons.designerIcon fontSize="small" />,
+    //   icon: <Icons.designerIcon fontSize="medium" />,
     // },
     // {
     //   name: "Integrations",
     //   route: "/integrations",
-    //   icon: <Icons.integrationIcon fontSize="small" />,
+    //   icon: <Icons.integrationIcon fontSize="medium" />,
     // },
     {
       name: "Insights Logs",
       route: "/insights-logs",
-      icon: <Icons.insightIcon fontSize="small" />,
+      icon: <Icons.insightIcon fontSize="medium" />,
     },
   ];
 
@@ -86,36 +86,34 @@ const Navigation = () => {
     {
       name: "Customer Support",
       route: "/customer-support",
-      icon: <Icons.customerIcon fontSize="small" />,
+      icon: <Icons.customerIcon fontSize="medium" />,
     },
     {
       name: "Settings",
       route: "/settings",
-      icon: <Icons.settingIcon fontSize="small" />,
+      icon: <Icons.settingIcon fontSize="medium" />,
     },
     {
       name: "Logout",
       route: "/logout",
-      icon: <Icons.logoutIcon fontSize="small" />,
+      icon: <Icons.logoutIcon fontSize="medium" />,
     },
   ];
 
   return (
     <div
       className={`${
-        fullNavigation ? "w-[260px] " : "w-[78px]"
-      } transition-all duration-[500ms] ease-in-out text-[#fff] min-h-[100vh] bg-[#233353] flex flex-col justify-between`}
+        fullNavigation ? "w-[350px]" : "w-[90px]"
+      } transition-all duration-[500ms] ease-in-out rounded-2xl text-[#fff] bg-[#233353] flex flex-col justify-between`}
     >
-      <div className="flex flex-col gap-5">
-        <div className="flex justify-around bg-[#17243A] p-[20px]">
-          <div className="w-[30px] h-[30px]">
-            <Image
-              src={BrandLogo}
-              alt="brand-logo"
-              width={57}
-              height={57}
-            />
-          </div>
+      <div className="flex flex-col gap-3 menu-list-container">
+        <div className="flex justify-around bg-[#17243A] p-[20px] rounded-t-2xl">
+          <Image
+            src={BrandLogo}
+            alt="brand-logo"
+            width={50}
+            height={50}
+          />
         </div>
         <div className="flex flex-col gap-2">
           {routeNav?.map((nav) => (
@@ -125,9 +123,9 @@ const Navigation = () => {
                 onClick={() => handleNavigation(nav?.route)}
               >
                 <div className="flex items-center">
-                  <div className="flex items-center justify-center min-w-[78px] h-[50px]">
+                  <div className="flex items-center justify-center min-w-[90px] h-[52px] menu-list-item">
                     <div
-                      className={`flex items-center justify-center w-[40px] h-[40px] ${
+                      className={`flex items-center justify-center w-[50px] h-[50px] menu-list-item-active ${
                         activeSection === nav?.route
                           ? "bg-[#00D3AF] rounded-lg"
                           : "bg-transparent"
@@ -163,9 +161,9 @@ const Navigation = () => {
                 onClick={nav?.name === "Logout" ? logoutHandler : () => {}}
               >
                 <div className="flex items-center">
-                  <div className="flex items-center justify-center min-w-[78px] h-[50px]">
+                  <div className="flex items-center justify-center min-w-[90px] h-[52px] menu-list-item">
                     <div
-                      className={`flex items-center justify-center w-[40px] h-[40px] ${
+                      className={`flex items-center justify-center w-[50px] h-[50px] menu-list-item-active ${
                         activeSection === nav?.route
                           ? "bg-[#00D3AF] rounded-lg"
                           : "bg-transparent"
@@ -191,7 +189,9 @@ const Navigation = () => {
         </div>
       </div>
       <div className="flex flex-col justify-around">
-        <div className={`flex justify-end mr-[-18px] pb-[40px] relative z-10`}>
+        <div
+          className={`flex justify-end mr-[-18px] pb-[30px] relative z-10 menu-list-arrow`}
+        >
           <Icons.rightArrow
             sx={{
               fontSize: 35,
@@ -206,7 +206,7 @@ const Navigation = () => {
           />
         </div>
         <div className="flex items-center pb-5">
-          <div className="flex items-center justify-center min-w-[78px] h-[50px]">
+          <div className="flex items-center justify-center min-w-[90px] h-[52px] menu-list-item">
             <Avatar
               alt="User"
               src=""

@@ -21,7 +21,7 @@ const ContractAnalysis = () => {
   } = useContractAnalysis();
 
   return (
-    <div className="grid gap-2 h-[100%] grid-cols-[0.8fr_1fr]">
+    <div className="grid h-[100%] grid-cols-[0.8fr_1fr]">
       <UploadedFiles
         title="Contract Analysis"
         uploadedFiles={uploadedFiles}
@@ -33,7 +33,7 @@ const ContractAnalysis = () => {
         onDelete={deleteFilesHandler}
         loading={loading}
       />
-      <div className="bg-[#fff] rounded-xl">
+      <div className="bg-[#fff] rounded-r-lg">
         <Summary
           value={value}
           error={error}

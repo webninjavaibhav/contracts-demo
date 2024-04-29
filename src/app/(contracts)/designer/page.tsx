@@ -10,6 +10,7 @@ const Designer = () => {
     const widget = (appMixer as any)?.ui?.Designer({
       el: "#designer",
     });
+    widget.set("flowId", "72b117a9-b33b-4da1-bde0-81559d0bc8e1");
     widget?.open();
     return () => {
       widget && widget.close();

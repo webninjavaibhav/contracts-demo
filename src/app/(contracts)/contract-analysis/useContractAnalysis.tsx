@@ -47,7 +47,6 @@ export const useContractAnalysis = () => {
       });
       const result = await response.json();
       setAnalyzedFiles(result?.data?.[0]);
-      setPolicy("");
     } catch (error) {
       setError("Something went wrong, please try again");
     } finally {
