@@ -4,6 +4,7 @@ import DropZone from "../DropZone";
 import DocumentList from "../DocumentList";
 import { Button } from "../common/Button";
 import Icons from "../common/Icons";
+import CustomTextArea from "../common/TextArea";
 
 const UploadedFiles = ({
   title,
@@ -40,43 +41,19 @@ const UploadedFiles = ({
         onDelete={onDelete}
       />
       <div className="grid grid-cols-[1fr]">
-        <div>
-          {title !== "Version Comparison" ? (
-            <div className="flex border border-[#D4D4D7] rounded-[4px] w-full">
-              <input
-                type="text"
-                value={inputValue}
-                placeholder={
-                  title === "Contract Comparison"
-                    ? "Prompt"
-                    : "Playbook Policies"
-                }
-                onChange={(e) => setInputValue?.(e.target.value)}
-                className="mr-2 px-2 flex-grow-0 outline-none w-full"
-              />
-              <div className="p-1 flex gap-2">
-                <Button
-                  type="submit"
-                  variant="contained"
-                  onClick={loading ? onCancel : onClick}
-                  className={`${
-                    loading
-                      ? "bg-red-500  hover:bg-red-500"
-                      : "bg-[#00D3AF] hover:bg-[#00D3AF]"
-                  } cursor-pointer gap-1 min-w-0 w-[36px]`}
-                >
-                  {loading ? (
-                    <Icons.stopIcon sx={{ fontSize: 20, marginBottom: 0.3 }} />
-                  ) : (
-                    <Icons.arrowUpIcon
-                      sx={{ fontSize: 20, marginBottom: 0.3 }}
-                    />
-                  )}
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex justify-end p-1 gap-2">
+        {title !== "Version Comparison" ? (
+          <div className="flex flex-row relative items-center w-full border border-[#D4D4D7] rounded-[4px]">
+            <CustomTextArea
+              value={inputValue}
+              placeholder={
+                title === "Contract Comparison" ? "Prompt" : "Playbook Policies"
+              }
+              handleInput={(e: React.BaseSyntheticEvent) =>
+                setInputValue?.(e?.target?.value)
+              }
+              style="pr-[50px]"
+            />
+            <div className="p-1 px-2 bottom-0 right-0 absolute">
               <Button
                 type="submit"
                 variant="contained"
@@ -85,7 +62,7 @@ const UploadedFiles = ({
                   loading
                     ? "bg-red-500  hover:bg-red-500"
                     : "bg-[#00D3AF] hover:bg-[#00D3AF]"
-                } cursor-pointer gap-1 min-w-0 w-[36px]`}
+                } cursor-pointer gap-1 min-w-0 w-[36px] h-[34px]`}
               >
                 {loading ? (
                   <Icons.stopIcon sx={{ fontSize: 20, marginBottom: 0.3 }} />
@@ -94,8 +71,27 @@ const UploadedFiles = ({
                 )}
               </Button>
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="flex justify-end p-1 gap-2">
+            <Button
+              type="submit"
+              variant="contained"
+              onClick={loading ? onCancel : onClick}
+              className={`${
+                loading
+                  ? "bg-red-500  hover:bg-red-500"
+                  : "bg-[#00D3AF] hover:bg-[#00D3AF]"
+              } cursor-pointer gap-1 min-w-0 w-[36px]`}
+            >
+              {loading ? (
+                <Icons.stopIcon sx={{ fontSize: 20, marginBottom: 0.3 }} />
+              ) : (
+                <Icons.arrowUpIcon sx={{ fontSize: 20, marginBottom: 0.3 }} />
+              )}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

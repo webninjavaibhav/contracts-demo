@@ -230,7 +230,7 @@ const Search = () => {
           />
         </div>
         {loading && search && (
-          <div className="grid place-content-center min-h-[70vh]">
+          <div className="grid place-content-center min-h-[54vh]">
             <CircularProgress sx={{ color: "#00D3AF" }} />
           </div>
         )}
@@ -266,12 +266,12 @@ const Search = () => {
             ))}
         </div>
         {!loading && search && displayedData?.length ? (
-          <div className="flex gap-4 mt-5 py-5 m-0 sticky bottom-[-20px] bg-[#fff]">
+          <div className="flex gap-4 mt-5 py-5 m-0 sticky bottom-0 bg-[#fff]">
             <Button
               onClick={prevPage}
               disabled={currentPage === 0}
               variant="contained"
-              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[15%]"
+              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[120px]"
             >
               Prev
             </Button>
@@ -279,7 +279,7 @@ const Search = () => {
               onClick={nextPage}
               disabled={currentPage === totalPages - 1}
               variant="contained"
-              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[15%]"
+              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[120px]"
             >
               Next
             </Button>
