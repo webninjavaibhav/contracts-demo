@@ -12,6 +12,7 @@ import CompareIcon from "../../../../public/images/compareIcon";
 import ConnectorIcon from "../../../../public/images/connectorIcon";
 import VersionIcon from "../../../../public/images/versionIcon";
 import LogoIcon from "../../../../public/images/logo";
+import AnalysisIcon from "../../../../public/images/analysis";
 import UserImage from "../../../../public/images/userImage.jpeg";
 
 const Navigation = () => {
@@ -39,7 +40,7 @@ const Navigation = () => {
     {
       name: "Contract Analysis",
       route: "/contract-analysis",
-      icon: <Icons.analysisIcon fontSize="medium" />,
+      icon: <AnalysisIcon />,
     },
     {
       name: "Contract Comparison",
@@ -221,7 +222,7 @@ const Navigation = () => {
               fullNavigation ? "opacity-1" : "opacity-0"
             } whitespace-nowrap overflow-hidden transition-all duration-[700ms] ease-in-out`}
           >
-            User
+            John Doe
           </div>
         </div>
       </div>
