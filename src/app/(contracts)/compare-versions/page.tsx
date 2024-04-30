@@ -31,14 +31,12 @@ const VersionComparison = () => {
         onDelete={deleteFilesHandler}
         loading={loading}
       />
-      <div className="bg-[#fff] rounded-r-lg min-h-[600px]">
-        <CompareVersion
-          loading={loading}
-          error={error}
-          data={comparedResult}
-          compareFor={"version"}
-        />
-      </div>
+      <CompareVersion
+        loading={loading}
+        error={error}
+        data={comparedResult}
+        compareFor={"version"}
+      />
     </div>
   );
 };

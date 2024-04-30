@@ -33,14 +33,12 @@ const ContractComparison = () => {
         onDelete={deleteFilesHandler}
         loading={loading}
       />
-      <div className="bg-[#fff] rounded-r-lg">
-        <CompareContracts
-          loading={loading}
-          error={error}
-          data={comparedResult}
-          compareFor={"contract"}
-        />
-      </div>
+      <CompareContracts
+        loading={loading}
+        error={error}
+        data={comparedResult}
+        compareFor={"contract"}
+      />
     </div>
   );
 };

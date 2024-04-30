@@ -7,6 +7,13 @@ import Icons from "../Icons";
 import BrandLogo from "../../../../public/images/brand-logo.png";
 import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
+import FlowIcon from "../../../../public/images/flowIcon";
+import SearchIcon from "../../../../public/images/searchIcon";
+import CompareIcon from "../../../../public/images/compareIcon";
+import ConnectorIcon from "../../../../public/images/connectorIcon";
+import VersionIcon from "../../../../public/images/versionIcon";
+import LogoIcon from "../../../../public/images/logo";
+import UserImage from "../../../../public/images/userimage.jpeg";
 
 const Navigation = () => {
   const path = usePathname();
@@ -38,17 +45,17 @@ const Navigation = () => {
     {
       name: "Contract Comparison",
       route: "/compare-contracts",
-      icon: <Icons.compareContracts fontSize="medium" />,
+      icon: <CompareIcon />,
     },
     {
       name: "Version Comparison",
       route: "/compare-versions",
-      icon: <Icons.compareVersions fontSize="medium" />,
+      icon: <VersionIcon />,
     },
     {
       name: "Legal Wiki",
       route: "/search",
-      icon: <Icons.searchIcon fontSize="medium" />,
+      icon: <SearchIcon />,
     },
     {
       name: "People Tasks",
@@ -58,12 +65,12 @@ const Navigation = () => {
     {
       name: "Connectors",
       route: "/connectors",
-      icon: <Icons.connectorIcon fontSize="medium" />,
+      icon: <ConnectorIcon />,
     },
     {
       name: "Flow Manager",
       route: "/flow-manager",
-      icon: <Icons.flowManagerIcon fontSize="medium" />,
+      icon: <FlowIcon />,
     },
     // {
     //   name: "Designer",
@@ -108,12 +115,7 @@ const Navigation = () => {
     >
       <div className="flex flex-col gap-3 menu-list-container">
         <div className="flex justify-around bg-[#17243A] p-[20px] rounded-t-2xl">
-          <Image
-            src={BrandLogo}
-            alt="brand-logo"
-            width={50}
-            height={50}
-          />
+          <LogoIcon />
         </div>
         <div className="flex flex-col gap-2">
           {routeNav?.map((nav) => (
@@ -207,11 +209,13 @@ const Navigation = () => {
         </div>
         <div className="flex items-center pb-5">
           <div className="flex items-center justify-center min-w-[90px] h-[52px] menu-list-item">
-            <Avatar
-              alt="User"
-              src=""
-              sx={{ backgroundColor: "#f0bd46", color: "#000000" }}
-            />
+            <Avatar sx={{ backgroundColor: "#f0bd46", color: "#000000" }}>
+              <Image
+                src={UserImage}
+                alt="User"
+                layout="fill"
+              />
+            </Avatar>
           </div>
           <div
             className={`${

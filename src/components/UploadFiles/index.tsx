@@ -28,7 +28,7 @@ const UploadedFiles = ({
   loading: boolean;
 }) => {
   return (
-    <div className="grid grid-rows-[0.75fr_1fr_40px] gap-3 bg-[#fff] p-10 rounded-l-lg">
+    <div className="grid grid-rows-[0.75fr_1fr_auto] gap-3 bg-[#fff] p-10 rounded-l-lg">
       <div className="flex flex-col gap-3">
         <div className="flex font-medium text-3xl">{title}</div>
         <DropZone

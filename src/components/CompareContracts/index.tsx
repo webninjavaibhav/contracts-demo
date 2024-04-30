@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "../common/Button";
+import Loader from "../common/Loader";
 
 async function generatePDF() {
   const invoice = document.getElementById("compare-contract-container");
@@ -28,46 +29,48 @@ const CompareContracts = ({
   compareFor: string;
 }) => {
   return (
-    <div className="flex flex-col gap-4 p-10">
-      <div className="flex font-semibold text-2xl">Compared Result</div>
-      {loading && (
-        <div className="grid place-content-center min-h-[70vh]">
-          <CircularProgress sx={{ color: "#00D3AF" }} />
-        </div>
-      )}
-      <div className="max-h-[730px] overflow-auto">
-        <div id="compare-contract-container">
-          {!loading && data?.html ? (
-            <div dangerouslySetInnerHTML={{ __html: data?.html }}></div>
-          ) : !loading && !error && data?.comparisons?.length ? (
-            <div className="text-lg text-red-500">
-              Something went wrong, please try again
-            </div>
-          ) : (
-            !loading &&
-            !error && (
-              <div className="text-xl text-[#a5a5ac] grid place-content-center min-h-[70vh] font-light">
-                Search Result
+    <div className="grid grid-rows-[25px_auto] gap-5 p-10 bg-[#fff] rounded-r-lg">
+      <div className="flex font-semibold items-center text-2xl">Results</div>
+      <div className="flex flex-col justify-between shadow-[0px_4px_20px_0px_#0000001a] rounded-lg p-5">
+        {loading && (
+          <div className="grid place-content-center min-h-[50vh]">
+            {/* <CircularProgress sx={{ color: "#00D3AF" }} /> */}
+            <Loader text={"Processing Documents"} />
+          </div>
+        )}
+        <div className="max-h-[calc(100vh_-_23vh)] overflow-auto pdf-container p-3 pb-0">
+          <div id="compare-contract-container">
+            {!loading && data?.html ? (
+              <div dangerouslySetInnerHTML={{ __html: data?.html }}></div>
+            ) : !loading && !error && data?.comparisons?.length ? (
+              <div className="text-lg text-red-500">
+                Something went wrong, please try again
               </div>
-            )
-          )}
+            ) : (
+              !loading &&
+              !error && (
+                <div className="text-xl text-[#a5a5ac] grid place-content-center min-h-[70vh] font-light">
+                  Search Result
+                </div>
+              )
+            )}
+          </div>
         </div>
+        {data?.html && !loading ? (
+          <div className="flex gap-4 pt-4 sticky bottom-0 bg-[#fff]">
+            <Button
+              component="label"
+              variant="contained"
+              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[200px]"
+              onClick={generatePDF}
+              disabled={loading}
+            >
+              Download PDF
+            </Button>
+          </div>
+        ) : null}
+        {error ? <div className="text-red-500 text-xl">{error}</div> : null}
       </div>
-
-      {data?.html && !loading ? (
-        <div className="flex gap-4 mt-5 sticky bottom-[-20px] bg-[#fff]">
-          <Button
-            component="label"
-            variant="contained"
-            className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[200px]"
-            onClick={generatePDF}
-            disabled={loading}
-          >
-            Download PDF
-          </Button>
-        </div>
-      ) : null}
-      {error ? <div className="text-red-500 text-xl">{error}</div> : null}
     </div>
   );
 };

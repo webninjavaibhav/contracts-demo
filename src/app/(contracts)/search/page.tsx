@@ -132,160 +132,128 @@ const Search = () => {
   const endIndex = startIndex + 5;
   const displayedData = searchHints?.slice(startIndex, endIndex);
 
+  console.log("searchResult?.html", searchResult?.html?.length);
+
   return (
-    <div className="bg-[#fff] rounded-xl p-5">
-      <div className="grid">
-        <div className="divide-y-2">
-          <div className="text-center font-bold text-2xl pb-2">
-            Legal Search
-          </div>
-          <div className="text-[13px] flex flex-col gap-4 py-3 text-[#6161f1]">
-            The following document bases can be searched in this application
-            <div>
-              <span className="italic">US Bills</span> : us_bills corpus
-              contains a collection of bills introduced in the United States,
-              representing legislative proposals put forward by members of
-              Congress. This corpus serves as a comprehensive repository of
-              legislative documents, offering valuable insights into the
-              legislative process and policy priorities of the U.S. government.
-            </div>
-            <div>
-              <span className="italic">The United States Code(Laws)</span> :
-              us_code corpus is a comprehensive collection of federal laws
-              enacted by the United States Congress. It serves as the official
-              compilation and codification of the general and permanent laws of
-              the United States, covering a wide range of topics including civil
-              rights, criminal justice, taxation, commerce, immigration, and
-              national security.
-            </div>
-            <div>
-              <span className="italic">
-                Guidance documents from the U.S. Department of Justice
-              </span>{" "}
-              : doj_guidance corpus is a collection of official guidance
-              documents issued by the United States Department of Justice (DOJ)
-              during the period from 2020 to 2022. These documents provide
-              interpretive guidance, policy statements, and legal opinions on
-              various matters within the jurisdiction of the DOJ
-            </div>
-          </div>
-          <div className="text-left py-3">
-            Please ask a question below below and get the result in real-time.
-            Important phrases are denoted in{" "}
-            <span className="font-bold">boldface</span>
-          </div>
+    <div className="grid bg-[#fff] rounded-xl p-5">
+      <div className="divide-y-2">
+        <div className="text-center font-bold text-2xl pb-2">Legal Search</div>
+        <div className="text-left py-3">
+          Please ask a question below below and get the result in real-time.
+          Important phrases are denoted in{" "}
+          <span className="font-bold">boldface</span>
         </div>
-        <div className="grid grid-cols-[0.2fr_1fr_55px] pt-2">
-          <FormControl size="small">
-            <Select
-              value={""}
-              onChange={handleChange}
-              displayEmpty
-              inputProps={{ "aria-label": "Without label" }}
-              MenuProps={MenuProps}
-            >
-              <MenuItem value="">Examples</MenuItem>
-              {LIST_SAMPLE_QUESTIONS?.map((item) => (
-                <MenuItem
-                  value={item}
-                  className="text-wrap"
-                  key={item}
-                >
-                  {item}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <input
-            value={search}
-            onChange={handleChange}
-            type="search"
-            className="p-1 px-4 border-2 rounded-s-md border-e-0 w-full focus:outline-none"
-          />
-          <div
-            onClick={() => {
-              setLoading(true);
-              searchReply(search);
-            }}
-            className="p-1 flex items-center px-3 bg-slate-500 rounded-e-md "
-          >
-            <Icons.searchIcon
-              sx={{
-                height: "30px",
-                width: "30px",
-                padding: "4px",
-                color: "#fff",
-              }}
-            />
-          </div>
-        </div>
-        <div className="flex justify-between items-center py-2">
-          <div className="text-slate-400">
-            {search && searchHints.length ? displayedData?.length : 0} Result
-          </div>
-          <CustomSelect
-            options={allSources}
-            selected={sources}
-            handleSelect={handleSource}
-          />
-        </div>
-        {loading && search && (
-          <div className="grid place-content-center min-h-[54vh]">
-            <CircularProgress sx={{ color: "#00D3AF" }} />
-          </div>
-        )}
-        {!loading && search && (
-          <p
-            className="bg-[#eef] p-1 my-4"
-            dangerouslySetInnerHTML={{ __html: searchResult?.html }}
-          ></p>
-        )}
-        <div className="block text-lg">
-          {!loading &&
-            search &&
-            displayedData?.map((item: any, index: number) => (
-              <div
-                key={index}
-                className="w-full flex flex-col p-4 border-[1px] border-slate-400 hover:bg-blue-200"
-              >
-                {isLink(item?.title) ? (
-                  <a
-                    className="font-semibold"
-                    href={item?.title}
-                    target="_blank"
-                  >
-                    {item?.title}
-                  </a>
-                ) : (
-                  <div className="font-semibold">{item?.title}</div>
-                )}
-                <p>
-                  <span dangerouslySetInnerHTML={{ __html: item?.context }} />
-                </p>
-              </div>
-            ))}
-        </div>
-        {!loading && search && displayedData?.length ? (
-          <div className="flex gap-4 mt-5 py-5 m-0 sticky bottom-0 bg-[#fff]">
-            <Button
-              onClick={prevPage}
-              disabled={currentPage === 0}
-              variant="contained"
-              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[120px]"
-            >
-              Prev
-            </Button>
-            <Button
-              onClick={nextPage}
-              disabled={currentPage === totalPages - 1}
-              variant="contained"
-              className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[120px]"
-            >
-              Next
-            </Button>
-          </div>
-        ) : null}
       </div>
+      <div className="grid grid-cols-[0.2fr_1fr_55px] pt-2">
+        <FormControl size="small">
+          <Select
+            value={""}
+            onChange={handleChange}
+            displayEmpty
+            inputProps={{ "aria-label": "Without label" }}
+            MenuProps={MenuProps}
+          >
+            <MenuItem value="">Examples</MenuItem>
+            {LIST_SAMPLE_QUESTIONS?.map((item) => (
+              <MenuItem
+                value={item}
+                className="text-wrap"
+                key={item}
+              >
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <input
+          value={search}
+          onChange={handleChange}
+          type="search"
+          className="p-1 px-4 border-2 rounded-s-md border-e-0 w-full focus:outline-none"
+        />
+        <div
+          onClick={() => {
+            setLoading(true);
+            searchReply(search);
+          }}
+          className="p-1 flex items-center px-3 bg-slate-500 rounded-e-md "
+        >
+          <Icons.searchIcon
+            sx={{
+              height: "30px",
+              width: "30px",
+              padding: "4px",
+              color: "#fff",
+            }}
+          />
+        </div>
+      </div>
+      <div className="flex justify-between items-center py-2">
+        <div className="text-slate-400">
+          {search && searchHints.length ? displayedData?.length : 0} Result
+        </div>
+        <CustomSelect
+          options={allSources}
+          selected={sources}
+          handleSelect={handleSource}
+        />
+      </div>
+      {loading && search && (
+        <div className="grid place-content-center min-h-[54vh]">
+          <CircularProgress sx={{ color: "#00D3AF" }} />
+        </div>
+      )}
+      {!loading && search && searchResult?.html?.length > 14 ? (
+        <p
+          className="bg-[#e8f5e9] p-1 my-4"
+          dangerouslySetInnerHTML={{ __html: searchResult?.html }}
+        ></p>
+      ) : null}
+      <div className="block text-lg">
+        {!loading &&
+          search &&
+          displayedData?.map((item: any, index: number) => (
+            <div
+              key={index}
+              className="w-full flex flex-col p-4 border-[1px] border-slate-400 hover:bg-blue-200"
+            >
+              {isLink(item?.title) ? (
+                <a
+                  className="font-semibold"
+                  href={item?.title}
+                  target="_blank"
+                >
+                  {item?.title}
+                </a>
+              ) : (
+                <div className="font-semibold">{item?.title}</div>
+              )}
+              <p className="text-sm">
+                <span dangerouslySetInnerHTML={{ __html: item?.context }} />
+              </p>
+            </div>
+          ))}
+      </div>
+      {!loading && search && displayedData?.length ? (
+        <div className="flex gap-4 mt-5 py-5 m-0 sticky bottom-0 bg-[#fff]">
+          <Button
+            onClick={prevPage}
+            disabled={currentPage === 0}
+            variant="contained"
+            className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[120px]"
+          >
+            Prev
+          </Button>
+          <Button
+            onClick={nextPage}
+            disabled={currentPage === totalPages - 1}
+            variant="contained"
+            className="bg-[#00D3AF] hover:bg-[#00D3AF] w-[120px]"
+          >
+            Next
+          </Button>
+        </div>
+      ) : null}
     </div>
   );
 };

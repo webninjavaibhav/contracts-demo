@@ -22,7 +22,7 @@ const DropZone = (props: any) => {
     <>
       <div
         {...getRootProps()}
-        className="grid place-items-center place-content-center border-dashed border-2 border-[#D4D4D7] rounded-lg min-h-[250px] cursor-pointer"
+        className="grid place-items-center place-content-center border-dashed border-2 border-[#D4D4D7] rounded-lg h-[100%] min-h-[160px] cursor-pointer"
       >
         <Box
           className={{
