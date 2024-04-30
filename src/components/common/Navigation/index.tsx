@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Divider, List, ListItemText } from "@mui/material";
+import { Divider } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import Icons from "../Icons";
-import BrandLogo from "../../../../public/images/brand-logo.png";
 import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
 import FlowIcon from "../../../../public/images/flowIcon";
@@ -13,7 +12,7 @@ import CompareIcon from "../../../../public/images/compareIcon";
 import ConnectorIcon from "../../../../public/images/connectorIcon";
 import VersionIcon from "../../../../public/images/versionIcon";
 import LogoIcon from "../../../../public/images/logo";
-import UserImage from "../../../../public/images/userimage.jpeg";
+import UserImage from "../../../../public/images/userImage.jpeg";
 
 const Navigation = () => {
   const path = usePathname();
