@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     if (
       parsedRealResponse?.summary ||
       parsedRealResponse?.comparisons ||
-      parsedRealResponse?.comparisons
+      parsedRealResponse?.html
     ) {
       resultantData = parsedRealResponse;
     } else {

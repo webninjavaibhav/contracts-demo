@@ -60,7 +60,7 @@ const Summary = ({
             {tabs?.length && currentPolicies && !loading ? (
               currentPolicies?.map((e: any, index: number) => {
                 return (
-                  <>
+                  <div key={index}>
                     <div
                       key={index + e}
                       className="mb-5"
@@ -167,7 +167,7 @@ const Summary = ({
                         ))}
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })
             ) : !loading && !error ? (
