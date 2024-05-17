@@ -60,7 +60,7 @@ const Navigation = () => {
     {
       name: "Generate Lesson",
       route: "/generate-lesson",
-      icon: <SearchIcon />,
+      icon: <Icons.generateLessonIcon fontSize="medium" />,
     },
     {
       name: "People Tasks",
