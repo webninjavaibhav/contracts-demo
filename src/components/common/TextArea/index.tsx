@@ -16,7 +16,7 @@ function CustomTextArea({
       maxRows={4}
       value={value}
       onChange={handleInput}
-      className={`p-3 w-full border-none outline-none resize-none rounded-md ${style}`}
+      className={`${style} p-2 w-full border-none outline-none resize-none border-2 rounded-md` }
       aria-label="maximum height"
       placeholder={placeholder}
     />

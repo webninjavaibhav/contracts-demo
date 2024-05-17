@@ -58,6 +58,11 @@ const Navigation = () => {
       icon: <SearchIcon />,
     },
     {
+      name: "Generate Lesson",
+      route: "/generate-lesson",
+      icon: <SearchIcon />,
+    },
+    {
       name: "People Tasks",
       route: "/people-tasks",
       icon: <Icons.peopleIcon fontSize="medium" />,

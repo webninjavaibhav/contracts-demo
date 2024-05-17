@@ -21,6 +21,7 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import LogoutIcon from "@mui/icons-material/Logout";
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 export default {
   analysisIcon: AnalyticsIcon,
@@ -46,4 +47,5 @@ export default {
   settingIcon: SettingsIcon,
   customerIcon: SupportAgentIcon,
   logoutIcon: LogoutIcon,
+  attachFileIcon : AttachFileIcon
 };
