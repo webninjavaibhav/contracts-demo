@@ -109,38 +109,50 @@ const GenerateLesson = () => {
               {messages.map((message, index) => {
                 return (
                   <div key={index}>
-                    <div className="flex p-2">
+                    <div className="flex p-2 justify-between">
+                      <div className="flex gap-3">
+                        {message.role === "assistant" ? (
+                          <Avatar
+                            sx={{
+                              width: 24,
+                              height: 24,
+                              bgcolor: deepOrange[500],
+                            }}
+                          >
+                            A
+                          </Avatar>
+                        ) : (
+                          <Avatar
+                            sx={{
+                              width: 24,
+                              height: 24,
+                              bgcolor: deepPurple[500],
+                            }}
+                          >
+                            OP
+                          </Avatar>
+                        )}
+                        <ReactMarkdown className="mx-2">
+                          {message.content}
+                        </ReactMarkdown>
+                      </div>
+
                       {message.role === "assistant" ? (
-                        <Avatar
-                          sx={{
-                            width: 24,
-                            height: 24,
-                            bgcolor: deepOrange[500],
-                          }}
-                        >
-                          A
-                        </Avatar>
-                      ) : (
-                        <Avatar
-                          sx={{
-                            width: 24,
-                            height: 24,
-                            bgcolor: deepPurple[500],
-                          }}
-                        >
-                          OP
-                        </Avatar>
-                      )}
-                      <ReactMarkdown className="mx-2">
-                        {message.content}
-                      </ReactMarkdown>
+                        <div className="flex flex-col gap-3">
+                          <Icons.copyIcon
+                            sx={{ fontSize: 20, marginBottom: 0.3 }}
+                          />
+                          <Icons.flagIcon
+                            sx={{ fontSize: 20, marginBottom: 0.3 }}
+                          />
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 );
               })}
             </div>
           </div>
-
           <div className="w-full bottom-[10px] absolute px-2">
             <form
               onSubmit={handleGenerate}

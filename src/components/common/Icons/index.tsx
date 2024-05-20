@@ -23,6 +23,7 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 export default {
   analysisIcon: AnalyticsIcon,
@@ -49,5 +50,6 @@ export default {
   customerIcon: SupportAgentIcon,
   logoutIcon: LogoutIcon,
   attachFileIcon : AttachFileIcon,
-  generateLessonIcon : AutoStoriesIcon
+  generateLessonIcon : AutoStoriesIcon,
+  copyIcon :ContentCopyIcon
 };
