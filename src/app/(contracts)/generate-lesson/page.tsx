@@ -1,11 +1,11 @@
 "use client";
+import { useState, useRef, useEffect, FormEvent } from "react";
 import { Button } from "@/components/common/Button";
-import { useState, useRef, useEffect, FormEvent, KeyboardEvent } from "react";
 import ReactMarkdown from "react-markdown";
-import CustomTextArea from "@/components/common/TextArea";
 import { Avatar } from "@mui/material";
 import { deepOrange, deepPurple } from "@mui/material/colors";
 import Icons from "@/components/common/Icons";
+import Input from "@/components/common/Input";
 
 const GenerateLesson = () => {
   const [userInput, setUserInput] = useState("");
@@ -46,8 +46,9 @@ const GenerateLesson = () => {
   // Handle form handlegenerate
   const handleGenerate = async (e: FormEvent) => {
     e.preventDefault();
+    setUserInput("");
 
-    if (userInput.trim() === "") {
+    if (userInput.trim() === "" || loading) {
       return;
     }
 
@@ -64,7 +65,6 @@ const GenerateLesson = () => {
     });
     let res = await response.json();
     setLoading(false);
-    setUserInput("");
 
     if (res?.error) handleError();
 
@@ -78,27 +78,11 @@ const GenerateLesson = () => {
     <>
       <div className="h-full rounded-xl p-5">
         <main className="relative">
-          <div className="grid grid-cols-[1.4fr_1fr] w-full place-items-end  items-center mb-4">
-            <div className="text-center">
-              <div className="font-bold text-lg">
-                Empowered Lesson Plan Generator
-              </div>
-              <div>Empowered Lesson Plan Generator</div>
+          <div className="text-center pb-2">
+            <div className="font-bold text-lg">
+              Empowered Lesson Plan Generator
             </div>
-            <div>
-              <Button
-                variant="text"
-                className="rounded-md text-black outline-none px-2 mx-2 shadow-none font-semibold"
-              >
-                New Session
-              </Button>
-              <Button
-                variant="contained"
-                className="rounded-md bg-slate-100 px-2 text-black font-semibold hover:bg-slate-100"
-              >
-                Remix this app
-              </Button>
-            </div>
+            <div>Empowered Lesson Plan Generator</div>
           </div>
 
           <div className="w-full bg-white rounded-lg p-4 overflow-hidden h-[82vh] pt-2 overflow-y-scroll flex justify-center items-center">
@@ -159,16 +143,13 @@ const GenerateLesson = () => {
               className="w-full flex justify-center items-center"
             >
               <Icons.attachFileIcon fontSize="medium" />
-              <div className="flex relative items-center w-full border border-[#D4D4D7] mx-2 rounded-[4px]">
-                <CustomTextArea
-                  value={userInput}
-                  placeholder="Enter message"
-                  handleInput={(e: React.BaseSyntheticEvent) =>
-                    setUserInput(e.target.value)
-                  }
-                  style="p-0"
-                />
-              </div>
+              <Input
+                value={userInput}
+                placeholder="Enter message"
+                handleInput={(e: React.BaseSyntheticEvent) =>
+                  setUserInput(e.target.value)
+                }
+              />
               <Button
                 type="submit"
                 variant="contained"
