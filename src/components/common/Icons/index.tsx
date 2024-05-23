@@ -24,6 +24,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import DownloadIcon from '@mui/icons-material/Download';
 
 export default {
   analysisIcon: AnalyticsIcon,
@@ -51,5 +52,6 @@ export default {
   logoutIcon: LogoutIcon,
   attachFileIcon : AttachFileIcon,
   generateLessonIcon : AutoStoriesIcon,
-  copyIcon :ContentCopyIcon
+  copyIcon :ContentCopyIcon,
+  download : DownloadIcon
 };

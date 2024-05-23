@@ -1,5 +1,4 @@
 import Tabs from "../common/Tabs";
-import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "../common/Button";
 import Icons from "../common/Icons";
 import Loader from "../common/Loader";
@@ -38,16 +37,21 @@ const Summary = ({
   const currentPolicies = currentFile?.policies;
   const currentDocumentName = currentFile?.documentName;
 
+  const handleDownload = (url: string) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.setAttribute("download", "file.pdf"); //or any other extension
+    document.body.appendChild(link);
+    link.click();
+  };
+
   return (
     <div className="grid grid-rows-[25px_auto] gap-5 p-10 bg-[#fff] rounded-r-lg">
       <div className="flex font-semibold items-center text-2xl">Results</div>
       <div className="flex flex-col justify-between shadow-[0px_4px_20px_0px_#0000001a] rounded-lg p-5">
         {tabs?.length && !loading ? (
-          <Tabs
-            tabs={tabs}
-            value={value}
-            onChange={handleChange}
-          />
+          <Tabs tabs={tabs} value={value} onChange={handleChange} />
         ) : null}
         {loading && (
           <div className="grid place-content-center min-h-[50vh]">
@@ -61,10 +65,7 @@ const Summary = ({
               currentPolicies?.map((e: any, index: number) => {
                 return (
                   <div key={index}>
-                    <div
-                      key={index + e}
-                      className="mb-5"
-                    >
+                    <div key={index + e} className="mb-5">
                       <div className="flex flex-col gap-3 bg-[#eef] p-5 rounded-[8px] mb-[20px]">
                         <div className="flex justify-between gap-2">
                           <div className="font-semibold p-2.5">
@@ -185,7 +186,19 @@ const Summary = ({
                 onClick={() => generatePDF(currentDocumentName)}
                 disabled={loading}
               >
-                Download PDF
+                Download PDF here
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                onClick={() =>
+                  handleDownload(
+                    "https://conasems-ava-prod.s3.sa-east-1.amazonaws.com/aulas/ava/dummy-1641923583.pdf"
+                  )
+                }
+                className={`${"bg-[#00D3AF] hover:bg-[#00D3AF]"} cursor-pointer gap-1 min-w-0 w-[36px]`}
+              >
+                <Icons.download fontSize="medium" />
               </Button>
             </div>
           ) : null}
