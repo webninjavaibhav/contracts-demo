@@ -3,9 +3,11 @@ import { useState, useRef, useEffect, FormEvent } from "react";
 import { Button } from "@/components/common/Button";
 import ReactMarkdown from "react-markdown";
 import { Avatar } from "@mui/material";
-import { deepOrange, deepPurple } from "@mui/material/colors";
 import Icons from "@/components/common/Icons";
 import Input from "@/components/common/Input";
+import Image from "next/image";
+import UserImage from "../../../../public//images/userImage.jpeg";
+import VirtualAssistance from "../../../../public//images/virtual_assistant.png";
 
 const GenerateLesson = () => {
   const [userInput, setUserInput] = useState("");
@@ -100,27 +102,31 @@ const GenerateLesson = () => {
                             sx={{
                               width: 24,
                               height: 24,
-                              bgcolor: deepOrange[500],
                             }}
                           >
-                            A
+                            <Image
+                              src={VirtualAssistance}
+                              alt="Assistant"
+                            />
                           </Avatar>
                         ) : (
                           <Avatar
                             sx={{
-                              width: 24,
-                              height: 24,
-                              bgcolor: deepPurple[500],
+                              width: 28,
+                              height: 28,
                             }}
                           >
-                            OP
+                            <Image
+                              src={UserImage}
+                              alt="User"
+                              layout="fill"
+                            />
                           </Avatar>
                         )}
                         <ReactMarkdown className="mx-2">
                           {message.content}
                         </ReactMarkdown>
                       </div>
-
                       {message.role === "assistant" ? (
                         <div className="flex flex-col gap-3">
                           <Icons.copyIcon
